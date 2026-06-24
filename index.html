@@ -246,7 +246,7 @@ header {
 
 .prob-grid {
   display:grid; grid-template-columns:1fr 1fr;
-  gap:14px; margin-bottom:56px;
+  gap:14px;
 }
 .pcard {
   padding:30px 28px; border-radius:18px;
@@ -260,19 +260,27 @@ header {
 }
 .pcard-icon {
   width:42px; height:42px; border-radius:10px;
-  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
   display:flex; align-items:center; justify-content:center;
   margin-bottom:20px; flex-shrink:0;
 }
 .pcard h3 { font-size:16px; font-weight:700; color:var(--white); margin-bottom:10px; line-height:1.35; }
 .pcard p  { font-size:14px; color:var(--muted); line-height:1.7; }
 
-/* Stats funnel */
-.stats-row { display:flex; align-items:center; gap:16px; }
+/* Stats funnel — vertical stacked layout */
+.stats-row {
+  display:flex; flex-direction:column;
+  align-items:stretch; gap:0;
+  margin-bottom:56px;
+}
 .stat-card {
-  flex:1; padding:40px 44px; border-radius:18px;
+  flex:none; width:100%;
+  padding:48px 56px; border-radius:18px;
   background:var(--surface); border:1px solid var(--border);
   backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+}
+.stats-row .stat-card:last-child {
+  margin-left:48px; margin-right:48px; width:auto;
 }
 .stat-eyebrow {
   font-size:11px; font-weight:600;
@@ -287,7 +295,8 @@ header {
 .stat-desc { font-size:15px; color:var(--muted); line-height:1.6; }
 .stat-arrow {
   display:flex; flex-direction:column;
-  align-items:center; gap:8px; flex:none; width:36px;
+  align-items:center; gap:8px;
+  flex:none; width:auto; padding:4px 0;
 }
 .stat-arrow-line {
   width:1px; height:40px;
@@ -297,7 +306,7 @@ header {
 .stat-arrow-label {
   font-size:10px; font-weight:600;
   letter-spacing:0.1em; text-transform:uppercase; color:var(--dim);
-  writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg);
+  writing-mode:horizontal-tb; text-orientation:mixed;
 }
 
 /* ============================================================
@@ -333,7 +342,7 @@ header {
 .proc-label { font-size:15px; font-weight:600; color:var(--muted); margin-bottom:28px; }
 .proc-wrap  { position:relative; }
 .proc-track {
-  position:absolute; top:33px; left:27px; right:27px; height:1px;
+  position:absolute; top:135px; left:27px; right:27px; height:1px;
   background:linear-gradient(90deg,
     transparent, rgba(94,234,212,0.18) 12%,
     rgba(94,234,212,0.28) 50%, rgba(94,234,212,0.18) 88%, transparent);
@@ -400,7 +409,7 @@ header {
   width:100%; height:100%; display:block;
   object-fit:cover; object-position:top center;
   filter:saturate(0.8) brightness(0.85);
-  transition:filter 0.4s ease;
+  transition:filter 0.4s ease, transform 0.4s ease;
   position:relative; z-index:0;
 }
 .tcard:hover .tcard-photo img {
@@ -563,6 +572,11 @@ header {
   max-width:var(--maxw); margin:0 auto;
   padding:18px 32px; font-size:13px; color:var(--dim);
 }
+.footer-brand { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.footer-wordmark {
+  font-size:10px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--dim);
+}
 
 /* ============================================================
    MOBILE RESPONSIVE
@@ -580,14 +594,15 @@ header {
   .prob-head h2, .fazemos-head h2, .equipa-head h2,
   .faq-head h2, .form-head h2, .cta-inner h2 { font-size:30px; }
   .prob-grid { grid-template-columns:1fr; }
-  .stats-row { flex-direction:column; }
+  /* Stats — remove desktop indent on mobile */
+  .stats-row .stat-card:last-child { margin-left:0; margin-right:0; width:100%; }
   .stat-card { padding:28px 28px; }
   .stat-num  { font-size:48px; }
-  .stat-arrow { flex-direction:row; width:auto; }
-  .stat-arrow-line { width:40px; height:1px;
-    background:linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent); }
-  .stat-arrow-icon svg { transform:rotate(90deg); }
-  .stat-arrow-label { writing-mode:horizontal-tb; transform:none; }
+  .stat-arrow { flex-direction:column; width:auto; }
+  .stat-arrow-line {
+    width:1px; height:30px;
+    background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+  }
   .svc-grid { grid-template-columns:1fr; }
   .proc-grid  { grid-template-columns:1fr 1fr; }
   .proc-track { display:none; }
@@ -630,6 +645,50 @@ header {
 @keyframes hero-glow-pulse {
   0%,100% { opacity:0.06; }
   50%     { opacity:0.12; }
+}
+
+/* ============================================================
+   HERO GEOMETRIC BACKGROUND (Fix 2)
+   ============================================================ */
+.hero-geo {
+  position:absolute; inset:0;
+  overflow:hidden; pointer-events:none; z-index:-1;
+}
+.hgeo-circle {
+  position:absolute; border-radius:50%;
+}
+.hgeo-c1 {
+  width:500px; height:500px;
+  top:50%; right:-60px;
+  transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,0.04);
+}
+.hgeo-c2 {
+  width:260px; height:260px;
+  top:8%; right:200px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+.hgeo-c3 {
+  width:130px; height:130px;
+  top:62%; right:340px;
+  border:1px solid rgba(255,255,255,0.025);
+}
+.hgeo-line {
+  position:absolute; width:180%; height:1px;
+  left:-40%; background:rgba(255,255,255,0.03);
+  transform-origin:left center;
+}
+.hgeo-l1 { top:28%; transform:rotate(18deg); }
+.hgeo-l2 { top:54%; transform:rotate(22deg); }
+.hgeo-l3 { top:72%; transform:rotate(15deg); }
+.hgeo-dots {
+  position:absolute; top:0; right:0;
+  width:320px; height:320px;
+  background-image:radial-gradient(circle, rgba(255,255,255,0.03) 1.5px, transparent 1.5px);
+  background-size:60px 60px;
+}
+@media (max-width:768px) {
+  .hero-geo { display:none; }
 }
 
 /* ============================================================
@@ -691,7 +750,7 @@ header {
    ENHANCEMENT 3: STATISTICS COUNTER + VISUAL DRAMA
    ============================================================ */
 
-/* 3B: stat number — gradient text, larger size, subtle glow */
+/* stat number — gradient text, larger size, subtle glow */
 .stat-num {
   font-size:72px;
   background:linear-gradient(175deg, #FFFFFF 30%, #5EEAD4 100%);
@@ -705,21 +764,22 @@ header {
   .stat-num { font-size:48px; }
 }
 
-/* 3C: second stat card slightly narrower to suggest funnel narrowing */
-.stats-row .stat-card:last-child { flex:0.92; }
-
 /* Arrow icon pulse */
 @keyframes arrow-pulse {
   0%,100% { opacity:0.4; }
   50%     { opacity:0.8; }
 }
-.stat-arrow-icon svg { animation:arrow-pulse 2.5s ease-in-out infinite; }
+/* Rotate arrow to point downward for vertical layout */
+.stat-arrow-icon svg {
+  transform:rotate(90deg);
+  animation:arrow-pulse 2.5s ease-in-out infinite;
+}
 
 /* ============================================================
    ENHANCEMENT 4: PROCESS TIMELINE ANIMATION
    ============================================================ */
 
-/* 4A: track starts hidden and draws left → right when section enters viewport */
+/* track starts hidden and draws left → right when section enters viewport */
 .proc-track { transform-origin:left center; transform:scaleX(0); }
 @keyframes track-draw {
   from { transform:scaleX(0); }
@@ -727,7 +787,7 @@ header {
 }
 .proc-track.drawn { animation:track-draw 1.2s ease-out forwards; }
 
-/* 4B: step dots start unlit, pop in sequentially via JS class */
+/* step dots start unlit, pop in sequentially via JS class */
 .step-dot { box-shadow:none; }
 @keyframes dot-pop {
   0%   { transform:scale(1);   box-shadow:none; }
@@ -740,7 +800,7 @@ header {
    ENHANCEMENT 5: DIFFERENTIATE PROBLEMA vs O QUE FAZEMOS
    ============================================================ */
 
-/* 5A: horizontal icon-left layout for service cards */
+/* horizontal icon-left layout for service cards */
 .svc-grid { grid-template-columns:1fr; max-width:700px; }
 .scard {
   display:grid;
@@ -758,7 +818,7 @@ header {
 .scard h3 { grid-row:1; grid-column:2; }
 .scard p  { grid-row:2; grid-column:2; }
 
-/* 5B: decorative divider at top of O que fazemos content */
+/* decorative divider at top of O que fazemos content */
 .fazemos .contain::before {
   content:"";
   display:block;
@@ -767,8 +827,55 @@ header {
   background:linear-gradient(90deg, transparent, rgba(94,234,212,0.2), transparent);
 }
 
-/* 5C: scard hover — teal tint instead of generic surface-2 */
+/* scard hover — teal tint instead of generic surface-2 */
 .scard:hover { background:rgba(94,234,212,0.04); }
+
+/* ============================================================
+   FIX 5: SERVICE BENTO GRID
+   Overrides Enhancement 5's horizontal-row layout
+   ============================================================ */
+.svc-grid { grid-template-columns:1fr 1fr; max-width:none; }
+.scard {
+  display:block; padding:32px 28px;
+  position:relative; overflow:hidden;
+}
+.scard-icon {
+  grid-row:unset; grid-column:unset;
+  width:42px; height:42px; align-self:auto; margin-bottom:20px;
+}
+.scard h3 { grid-row:unset; grid-column:unset; font-size:16px; }
+.scard p  { grid-row:unset; grid-column:unset; }
+
+/* Hero card: full width + larger title + brighter hover border */
+.scard-hero { grid-column:1 / -1; }
+.scard-hero h3 { font-size:20px; line-height:1.3; margin-bottom:12px; }
+.scard-hero:hover { border-color:rgba(94,234,212,0.25); }
+
+/* Decorative corner glow on every scard */
+.scard::after {
+  content:""; position:absolute;
+  bottom:-28px; right:-28px;
+  width:110px; height:110px; border-radius:50%;
+  background:radial-gradient(circle, rgba(94,234,212,0.055) 0%, transparent 70%);
+  pointer-events:none;
+}
+@media (max-width:768px) {
+  .svc-grid { grid-template-columns:1fr; }
+  .scard-hero { grid-column:auto; }
+  .scard-hero h3 { font-size:17px; }
+}
+
+/* ============================================================
+   FIX 6: PROCESS STEP ILLUSTRATIONS
+   ============================================================ */
+.step-card {
+  min-height:280px;
+  background:linear-gradient(170deg, var(--surface) 0%, rgba(94,234,212,0.018) 100%);
+}
+.step-visual {
+  display:flex; justify-content:center; align-items:center;
+  height:80px; margin-bottom:22px;
+}
 
 /* ============================================================
    ENHANCEMENT 6: MOBILE HAMBURGER MENU
@@ -881,7 +988,7 @@ header {
 }
 
 /* ============================================================
-   ENHANCEMENT 8: SVG LOGO
+   ENHANCEMENT 8: LOGO
    ============================================================ */
 
 .footer-logo { height:42px; }
@@ -906,10 +1013,7 @@ header {
 <header>
   <div class="nav-inner">
     <a href="#top">
-      <svg class="nav-logo" height="32" viewBox="0 0 52 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WebVentures">
-        <polyline points="2,3 10,25 18,7 26,25 34,3" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <polyline points="31,3 40,25 49,3" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <img src="uploads/pasted-1782258618052-0.png" alt="WebVentures" class="nav-logo">
     </a>
     <nav class="nav-links">
       <a href="#problema" class="nav-link">Problema</a>
@@ -945,6 +1049,17 @@ header {
      ================================================================ -->
 <section id="top" class="hero">
 
+  <!-- Geometric background: wireframe circles, diagonal lines, dot grid -->
+  <div class="hero-geo" aria-hidden="true">
+    <div class="hgeo-circle hgeo-c1"></div>
+    <div class="hgeo-circle hgeo-c2"></div>
+    <div class="hgeo-circle hgeo-c3"></div>
+    <div class="hgeo-line hgeo-l1"></div>
+    <div class="hgeo-line hgeo-l2"></div>
+    <div class="hgeo-line hgeo-l3"></div>
+    <div class="hgeo-dots"></div>
+  </div>
+
   <!-- Enhancement 1A: focal glow behind headline -->
   <div class="hero-glow" aria-hidden="true"></div>
 
@@ -963,10 +1078,10 @@ header {
       <div class="bcard">
         <div class="bcard-step"><span>01</span></div>
         <div class="bcard-metric">
-          <span class="bcard-num word">+clientes</span>
+          <span class="bcard-num">3 em 1</span>
+          <span class="bcard-unit">benefícios</span>
         </div>
-        <div class="bcard-unit" style="margin-bottom:13px;">confiança + talento</div>
-        <div class="bcard-title">Mais clientes, mais confiança e mais mão de obra</div>
+        <div class="bcard-title">Clientes, confiança e talento</div>
         <div class="bcard-desc">Um website profissional atrai clientes, transmite confiança e torna a sua empresa mais atrativa para candidatos.</div>
       </div>
 
@@ -1018,57 +1133,7 @@ header {
       <p class="sub">Não tem de continuar a ser assim.</p>
     </div>
 
-    <div class="prob-grid">
-
-      <div class="pcard reveal" data-delay="0">
-        <div class="pcard-icon">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="2,5 7.5,12 12,7.5 18,14.5" stroke="#C9A84C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            <polyline points="13.5,14.5 18,14.5 18,10" stroke="#C9A84C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3>Dependência total de recomendações</h3>
-        <p>Ficar refém apenas do passa-palavra limita a sua previsibilidade e crescimento.</p>
-      </div>
-
-      <div class="pcard reveal" data-delay="100">
-        <div class="pcard-icon">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8.5" cy="8.5" r="5.5" stroke="#C9A84C" stroke-width="1.75"/>
-            <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="#C9A84C" stroke-width="1.75" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h3>Novos clientes não encontram a sua empresa</h3>
-        <p>Quem precisa dos seus serviços hoje acaba por escolher o concorrente que aparece primeiro.</p>
-      </div>
-
-      <div class="pcard reveal" data-delay="200">
-        <div class="pcard-icon">
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="8" stroke="#C9A84C" stroke-width="1.75"/>
-            <line x1="10" y1="6.5" x2="10" y2="11.5" stroke="#C9A84C" stroke-width="1.75" stroke-linecap="round"/>
-            <circle cx="10" cy="14" r="0.9" fill="#C9A84C"/>
-          </svg>
-        </div>
-        <h3>Imagem pouco profissional face à concorrência</h3>
-        <p>Um negócio sem site ou com site desatualizado perde credibilidade instantaneamente.</p>
-      </div>
-
-      <div class="pcard reveal" data-delay="300">
-        <div class="pcard-icon">
-          <svg width="20" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="8" cy="5" r="3.5" stroke="#C9A84C" stroke-width="1.7"/>
-            <circle cx="17" cy="5" r="2.8" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M1 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#C9A84C" stroke-width="1.7" stroke-linecap="round" fill="none"/>
-            <path d="M16 11.5c2.485 0 4.5 2.015 4.5 4.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <h3>Dificuldade em atrair bons profissionais</h3>
-        <p>Os melhores talentos pesquisam pela sua empresa antes de aceitarem trabalhar consigo.</p>
-      </div>
-
-    </div>
-
+    <!-- Stats funnel — appears BEFORE the problem cards -->
     <div class="stats-row">
 
       <div class="stat-card reveal" data-delay="0">
@@ -1096,6 +1161,57 @@ header {
 
     </div>
 
+    <div class="prob-grid">
+
+      <div class="pcard reveal" data-delay="0">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="2,5 7.5,12 12,7.5 18,14.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="13.5,14.5 18,14.5 18,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Dependência total de recomendações</h3>
+        <p>Ficar refém apenas do passa-palavra limita a sua previsibilidade e crescimento.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="100">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75"/>
+            <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Novos clientes não encontram a sua empresa</h3>
+        <p>Quem precisa dos seus serviços hoje acaba por escolher o concorrente que aparece primeiro.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="200">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,0.5)" stroke-width="1.75"/>
+            <line x1="10" y1="6.5" x2="10" y2="11.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="10" cy="14" r="0.9" fill="rgba(255,255,255,0.5)"/>
+          </svg>
+        </div>
+        <h3>Imagem pouco profissional face à concorrência</h3>
+        <p>Um negócio sem site ou com site desatualizado perde credibilidade instantaneamente.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="300">
+        <div class="pcard-icon">
+          <svg width="20" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="5" r="3.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.7"/>
+            <circle cx="17" cy="5" r="2.8" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <path d="M1 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="rgba(255,255,255,0.5)" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+            <path d="M16 11.5c2.485 0 4.5 2.015 4.5 4.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <h3>Dificuldade em atrair bons profissionais</h3>
+        <p>Os melhores talentos pesquisam pela sua empresa antes de aceitarem trabalhar consigo.</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
@@ -1115,7 +1231,8 @@ header {
 
     <div class="svc-grid">
 
-      <div class="scard reveal" data-delay="0">
+      <!-- Hero card: spans 2 columns -->
+      <div class="scard scard-hero reveal" data-delay="0">
         <div class="scard-icon">
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10" cy="10" r="8" stroke="#5EEAD4" stroke-width="1.6"/>
@@ -1124,10 +1241,10 @@ header {
           </svg>
         </div>
         <h3>Estruturado para gerar contactos</h3>
-        <p>Cada página é pensada para guiar o visitante até ao contacto, sem distrações.</p>
+        <p>Cada página é pensada para guiar o visitante até ao contacto, sem distrações. A arquitetura de informação, o posicionamento dos botões e o fluxo de navegação são desenhados com um único objetivo: transformar visitas em pedidos de contacto.</p>
       </div>
 
-      <div class="scard reveal" data-delay="120">
+      <div class="scard reveal" data-delay="100">
         <div class="scard-icon">
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 2L3 5.5v5c0 3.5 2.8 6.8 7 7.8 4.2-1 7-4.3 7-7.8v-5L10 2z" stroke="#5EEAD4" stroke-width="1.6" stroke-linejoin="round"/>
@@ -1138,7 +1255,7 @@ header {
         <p>Design profissional que faz a sua empresa parecer tão boa quanto realmente é.</p>
       </div>
 
-      <div class="scard reveal" data-delay="240">
+      <div class="scard reveal" data-delay="200">
         <div class="scard-icon">
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <line x1="4" y1="6"  x2="16" y2="6"  stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round"/>
@@ -1158,24 +1275,74 @@ header {
       <div class="proc-grid">
 
         <div class="step-card reveal" data-delay="0">
+          <!-- Browser window mockup -->
+          <div class="step-visual">
+            <svg width="108" height="72" viewBox="0 0 108 72" fill="none">
+              <rect x="1" y="1" width="106" height="70" rx="7" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+              <line x1="1" y1="20" x2="107" y2="20" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <circle cx="11" cy="11" r="3" fill="rgba(255,80,80,0.28)"/>
+              <circle cx="22" cy="11" r="3" fill="rgba(255,185,0,0.28)"/>
+              <circle cx="33" cy="11" r="3" fill="rgba(60,200,60,0.28)"/>
+              <rect x="42" y="6" width="54" height="10" rx="3" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+              <rect x="9" y="28" width="90" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+              <rect x="9" y="38" width="56" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="9" y="48" width="72" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="9" y="58" width="36" height="7" rx="3" fill="rgba(94,234,212,0.1)" stroke="rgba(94,234,212,0.22)" stroke-width="1"/>
+            </svg>
+          </div>
           <div class="step-ind"><span class="step-dot"></span><span class="step-n">01</span></div>
           <h3>Demonstração do website</h3>
           <p>Mostramos-lhe como ficaria o seu website, sem compromisso.</p>
         </div>
 
         <div class="step-card reveal" data-delay="100">
+          <!-- Customisation: overlapping frames + slider controls -->
+          <div class="step-visual">
+            <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+              <rect x="4" y="4" width="54" height="40" rx="5" stroke="rgba(94,234,212,0.2)" stroke-width="1.5" fill="none"/>
+              <rect x="22" y="16" width="54" height="40" rx="5" stroke="rgba(94,234,212,0.09)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <line x1="6" y1="58" x2="60" y2="58" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="38" cy="58" r="4.5" fill="rgba(94,234,212,0.18)" stroke="rgba(94,234,212,0.45)" stroke-width="1.2"/>
+              <line x1="6" y1="68" x2="60" y2="68" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="22" cy="68" r="4.5" fill="rgba(94,234,212,0.1)" stroke="rgba(94,234,212,0.3)" stroke-width="1.2"/>
+            </svg>
+          </div>
           <div class="step-ind"><span class="step-dot"></span><span class="step-n">02</span></div>
           <h3>Personalização à medida</h3>
           <p>Ajustamos tudo ao seu negócio: cores, conteúdo, estrutura.</p>
         </div>
 
         <div class="step-card reveal" data-delay="200">
+          <!-- Checkmark circle + publish arrow -->
+          <div class="step-visual">
+            <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+              <circle cx="38" cy="36" r="28" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+              <circle cx="38" cy="36" r="19" stroke="rgba(94,234,212,0.18)" stroke-width="1.5"/>
+              <polyline points="26,36 33,44 50,28" stroke="rgba(94,234,212,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="78" y1="62" x2="78" y2="24" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-linecap="round"/>
+              <polyline points="70,32 78,24 86,32" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="71" y1="68" x2="85" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="step-ind"><span class="step-dot"></span><span class="step-n">03</span></div>
           <h3>Revisão e publicação</h3>
           <p>Revemos consigo e publicamos quando estiver perfeito.</p>
         </div>
 
         <div class="step-card reveal" data-delay="300">
+          <!-- Trending chart with pulse line -->
+          <div class="step-visual">
+            <svg width="110" height="68" viewBox="0 0 110 68" fill="none">
+              <line x1="8" y1="56" x2="102" y2="56" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="40" x2="102" y2="40" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="24" x2="102" y2="24" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="8"  x2="102" y2="8"  stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="8"  x2="8"   y2="56" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <polygon points="8,54 24,46 42,36 60,24 78,14 102,6 102,56 8,56" fill="rgba(94,234,212,0.03)"/>
+              <polyline points="8,54 24,46 42,36 60,24 78,14 102,6" stroke="rgba(94,234,212,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="8,56 18,56 24,44 30,52 36,52 44,34 50,52 56,52 64,56 88,56" stroke="rgba(255,255,255,0.1)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div class="step-ind"><span class="step-dot"></span><span class="step-n">04</span></div>
           <h3>Acompanhamento</h3>
           <p>Não desaparecemos. Ficamos consigo para otimizar resultados.</p>
@@ -1208,7 +1375,7 @@ header {
           <span class="tcard-live"><span class="live-dot"></span>LIVE</span>
         </div>
         <div class="tcard-photo">
-          <img src="uploads/antonio.jpg" alt="António Tomás, CEO" style="object-position:50% 5%;">
+          <img src="uploads/antonio.jpg" alt="António Tomás, CEO" style="object-position:50% 15%; transform:scale(1.28); transform-origin:50% 18%;">
         </div>
         <div class="tcard-info">
           <div class="tcard-role">CEO</div>
@@ -1222,7 +1389,7 @@ header {
           <span class="tcard-live"><span class="live-dot"></span>LIVE</span>
         </div>
         <div class="tcard-photo">
-          <img src="uploads/bernardo.jpg" alt="Bernardo Martins, Web Developer" style="object-position:50% 13%;">
+          <img src="uploads/bernardo.jpg" alt="Bernardo Martins, Web Developer" style="object-position:50% 22%; transform:scale(0.92); transform-origin:50% 20%;">
         </div>
         <div class="tcard-info">
           <div class="tcard-role">Web Developer</div>
@@ -1473,12 +1640,9 @@ header {
      ================================================================ -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <a href="#top">
-      <svg class="nav-logo footer-logo" viewBox="0 0 104 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="WebVentures">
-        <polyline points="28,2 36,24 44,6 52,24 60,2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <polyline points="57,2 66,24 75,2" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="52" y="40" fill="rgba(255,255,255,0.6)" font-family="Inter,sans-serif" font-size="7.5" font-weight="600" letter-spacing="3" text-anchor="middle">WEBVENTURES</text>
-      </svg>
+    <a href="#top" class="footer-brand">
+      <img src="uploads/pasted-1782258618052-0.png" alt="WebVentures" class="nav-logo footer-logo">
+      <span class="footer-wordmark">WEBVENTURES</span>
     </a>
     <nav class="footer-nav">
       <a href="#problema" class="footer-link">Problema</a>
