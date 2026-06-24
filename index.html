@@ -6,238 +6,481 @@
 <title>WebVentures – Websites que geram resultados</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Montserrat', system-ui, sans-serif;
-    background: #fff;
-    color: #0A2647;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+  :root{
+    --bg:#08080A;
+    --bg-2:#0B0B0F;
+    --surface:rgba(255,255,255,.025);
+    --surface-2:rgba(255,255,255,.04);
+    --border:rgba(255,255,255,.08);
+    --border-soft:rgba(255,255,255,.06);
+    --white:#FFFFFF;
+    --muted:#A1A1AA;
+    --muted-2:#71717A;
+    --accent:#7FE7C4;        /* soft tech-green */
+    --accent-2:#5EEAD4;      /* teal */
+    --accent-glow:rgba(127,231,196,.35);
+    --maxw:1180px;
   }
-  a { text-decoration: none; color: inherit; }
 
-  /* NAV */
-  .nav-link { transition: color .2s; }
-  .nav-link:hover { color: #0A2647; }
-  .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(10,38,71,.5) !important; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+    line-height:1.5;
+  }
+  a{text-decoration:none;color:inherit;}
+  ::selection{background:var(--accent-glow);color:#062018;}
 
-  /* HERO */
-  .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(10,38,71,.55) !important; }
+  /* ---------- AMBIENT AURORA BACKGROUND ---------- */
+  .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+  .aurora span{position:absolute;border-radius:50%;filter:blur(120px);opacity:.5;}
+  .aurora .a1{top:-180px;left:-120px;width:560px;height:560px;
+    background:radial-gradient(circle,rgba(94,234,212,.28),transparent 70%);}
+  .aurora .a2{top:340px;right:-160px;width:520px;height:520px;
+    background:radial-gradient(circle,rgba(127,231,196,.18),transparent 70%);}
+  .aurora .a3{bottom:-200px;left:30%;width:620px;height:620px;
+    background:radial-gradient(circle,rgba(120,160,200,.12),transparent 70%);}
+  /* fine grain noise / grid texture */
+  .grid-texture{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 30%,black,transparent 80%);
+    -webkit-mask-image:radial-gradient(circle at 50% 30%,black,transparent 80%);}
 
-  /* Problem cards */
-  .problem-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -16px rgba(10,38,71,.2); }
+  .wrap{position:relative;z-index:1;}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
 
-  /* What-we-do cards */
-  .service-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(10,38,71,.22); }
+  /* ---------- TYPOGRAPHY HELPERS ---------- */
+  h1,h2,h3{letter-spacing:-.025em;text-wrap:balance;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);
+    padding:7px 14px;border-radius:999px;
+    background:rgba(127,231,196,.06);
+    border:1px solid rgba(127,231,196,.16);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 10px var(--accent-glow);}
+  .lead{font-size:18px;line-height:1.65;color:var(--muted);}
 
-  /* Benefit cards */
-  .benefit-card:hover { background: rgba(255,255,255,.1) !important; border-color: rgba(255,255,255,.2) !important; transform: translateY(-3px); }
+  /* ---------- GLASS CARD ---------- */
+  .glass{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-radius:20px;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,background .35s;
+  }
+  /* subtle top-edge highlight */
+  .glass::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+    background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,0) 40%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  }
+  .glass:hover{transform:translateY(-4px);border-color:rgba(127,231,196,.22);background:var(--surface-2);}
 
-  /* FAQ */
-  .faq-btn:hover { background: #EDF1F8; }
-  .faq-icon { transition: transform .25s; display: inline-block; }
+  /* ---------- NAV ---------- */
+  header.nav{position:sticky;top:0;z-index:50;
+    background:rgba(8,8,10,.6);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border-soft);}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;}
+  .nav-logo{height:34px;width:auto;filter:brightness(0) invert(1);opacity:.95;}
+  .nav-links{display:flex;align-items:center;gap:34px;font-size:14.5px;font-weight:500;color:var(--muted);}
+  .nav-link{position:relative;transition:color .2s;}
+  .nav-link:hover{color:var(--white);}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;
+    background:var(--accent);transition:width .25s;}
+  .nav-link:hover::after{width:100%;}
 
-  /* CTA button */
-  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -12px rgba(0,0,0,.4) !important; }
+  /* ---------- BUTTONS ---------- */
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
+    padding:13px 24px;border-radius:999px;
+    background:var(--white);color:#08080A;font-weight:700;font-size:14.5px;
+    transition:transform .25s,box-shadow .25s;
+    box-shadow:0 0 0 1px rgba(255,255,255,.1),0 8px 30px -8px rgba(127,231,196,.4);
+  }
+  .btn-primary:hover{transform:translateY(-2px);
+    box-shadow:0 0 0 1px rgba(255,255,255,.2),0 14px 40px -10px rgba(127,231,196,.6);}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:10px;white-space:nowrap;
+    padding:17px 32px;border-radius:999px;font-weight:600;font-size:16px;color:var(--white);
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
+    transition:transform .25s,border-color .25s,box-shadow .25s,background .25s;
+  }
+  .btn-ghost:hover{transform:translateY(-2px);border-color:rgba(127,231,196,.4);
+    background:rgba(127,231,196,.06);box-shadow:0 0 30px -6px var(--accent-glow);}
+  .btn-lg{padding:17px 34px;font-size:16px;}
+  .arrow{font-size:18px;line-height:1;transition:transform .25s;}
+  .btn-primary:hover .arrow,.btn-ghost:hover .arrow{transform:translateX(3px);}
 
-  /* Footer links */
-  .footer-link:hover { color: #fff; }
-  .btn-footer:hover { background: rgba(255,255,255,.15) !important; }
+  /* ---------- SECTION RHYTHM ---------- */
+  section{position:relative;}
+  .pad{padding:104px 0;}
+  .section-head{max-width:720px;}
+  .section-head.center{margin:0 auto;text-align:center;}
+  .section-head h2{font-size:40px;line-height:1.12;font-weight:700;margin-top:20px;}
+  .section-head .lead{margin-top:18px;}
 
-  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  h1.hero-title{font-weight:700;font-size:58px;line-height:1.06;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:120px 0 90px;text-align:center;}
+  .hero .lead{max-width:600px;margin:26px auto 38px;font-size:19px;}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* floating mini nodes around hero */
+  .node-badge{
+    position:absolute;display:inline-flex;align-items:center;gap:8px;
+    padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:500;color:var(--muted);
+    background:rgba(255,255,255,.03);border:1px solid var(--border);
+    backdrop-filter:blur(10px);animation:float 6s ease-in-out infinite;
+  }
+  .node-badge .ic{width:7px;height:7px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 10px var(--accent-glow);}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+
+  /* browser mock */
+  .mock{position:relative;margin-top:70px;}
+  .mock-frame{border-radius:22px;overflow:hidden;border:1px solid var(--border);
+    background:rgba(255,255,255,.02);backdrop-filter:blur(16px);
+    box-shadow:0 60px 120px -50px rgba(0,0,0,.8),0 0 80px -30px rgba(94,234,212,.18);}
+  .mock-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;
+    border-bottom:1px solid var(--border-soft);background:rgba(255,255,255,.02);}
+  .mock-bar .d{width:11px;height:11px;border-radius:50%;}
+  .mock-stage{height:380px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(600px 300px at 50% -10%,rgba(94,234,212,.12),transparent 70%),
+      radial-gradient(400px 300px at 80% 120%,rgba(127,231,196,.1),transparent 70%),
+      #0A0A0E;
+    display:flex;align-items:center;justify-content:center;}
+  .mock-stage .scan{position:absolute;inset:0;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 60px);
+    mask-image:linear-gradient(180deg,transparent,black,transparent);
+    -webkit-mask-image:linear-gradient(180deg,transparent,black,transparent);}
+  .mock-tag{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;
+    color:#7FE7C4;letter-spacing:.04em;position:relative;z-index:1;
+    padding:8px 16px;border:1px solid rgba(127,231,196,.2);border-radius:999px;
+    background:rgba(127,231,196,.05);}
+
+  /* ---------- PROBLEM SECTION (bento) ---------- */
+  .problem-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:18px;}
+  .pill-row{display:flex;align-items:center;gap:16px;padding:22px 26px;}
+  .pill-row .warn{flex:none;width:9px;height:9px;border-radius:50%;background:#F87171;
+    box-shadow:0 0 12px rgba(248,113,113,.5);}
+  .pill-row span{font-size:15.5px;font-weight:600;color:#E4E4E7;}
+
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .stat{padding:38px 36px;display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(160deg,rgba(127,231,196,.06),rgba(255,255,255,.02));}
+  .stat .num{font-weight:800;font-size:54px;line-height:1;letter-spacing:-.04em;
+    background:linear-gradient(120deg,#fff,#7FE7C4);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .stat .desc{font-size:15px;color:var(--muted);font-weight:500;margin-top:12px;line-height:1.5;}
+
+  /* ---------- SERVICES ---------- */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .card-pad{padding:36px 30px;}
+  .icon-box{display:flex;align-items:center;justify-content:center;width:48px;height:48px;
+    border-radius:14px;margin-bottom:24px;
+    background:rgba(127,231,196,.08);border:1px solid rgba(127,231,196,.18);
+    box-shadow:inset 0 0 20px -8px var(--accent-glow);}
+  .card-pad h3{font-weight:700;font-size:19px;margin-bottom:10px;color:var(--white);}
+  .card-pad p{font-size:15px;line-height:1.65;color:var(--muted);}
+
+  /* dot list */
+  .dot-list{display:flex;flex-direction:column;gap:14px;}
+  .dot-list .li{display:flex;align-items:center;gap:12px;}
+  .dot-list .li .d{flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 8px var(--accent-glow);}
+  .dot-list .li span{font-size:15px;font-weight:500;color:var(--muted);}
+
+  /* benefit card heading */
+  .benefit h3{font-weight:700;font-size:22px;margin-bottom:22px;color:var(--white);}
+
+  /* ---------- PROCESS ---------- */
+  .step .n{font-weight:800;font-size:44px;line-height:1;letter-spacing:-.04em;margin-bottom:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(127,231,196,.25));
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .step h3{font-weight:700;font-size:17px;color:#E4E4E7;}
+
+  /* ---------- TEAM / WHY ---------- */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .why-list{display:flex;flex-direction:column;gap:14px;}
+  .why-row{display:flex;align-items:center;gap:16px;padding:20px 24px;}
+  .why-row .d{flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 10px var(--accent-glow);}
+  .why-row span{font-size:15.5px;font-weight:600;color:#E4E4E7;}
+  .team-label{font-weight:600;font-size:13px;color:var(--muted-2);margin-bottom:20px;
+    letter-spacing:.14em;text-transform:uppercase;}
+  .member{display:flex;align-items:center;gap:18px;padding:20px 24px;}
+  .avatar{flex:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:15px;color:#08080A;
+    background:linear-gradient(140deg,#fff,#7FE7C4);
+    box-shadow:0 0 24px -6px var(--accent-glow);}
+  .member .name{font-weight:700;font-size:16px;color:var(--white);}
+  .member .role{font-size:14px;color:var(--muted-2);font-weight:500;margin-top:2px;}
+
+  /* ---------- CTA ---------- */
+  .cta-card{position:relative;overflow:hidden;border-radius:28px;padding:88px 56px;text-align:center;
+    background:
+      radial-gradient(600px 300px at 50% -20%,rgba(94,234,212,.22),transparent 70%),
+      linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+    border:1px solid var(--border);backdrop-filter:blur(16px);}
+  .cta-card .glow{position:absolute;border-radius:50%;filter:blur(90px);}
+  .cta-card .g1{left:-80px;bottom:-120px;width:340px;height:340px;
+    background:radial-gradient(circle,rgba(127,231,196,.3),transparent 68%);}
+  .cta-card .g2{right:-60px;top:-100px;width:280px;height:280px;
+    background:radial-gradient(circle,rgba(94,234,212,.22),transparent 68%);}
+  .cta-card .inner{position:relative;max-width:640px;margin:0 auto;}
+  .cta-card h2{font-weight:700;font-size:42px;line-height:1.1;margin-bottom:18px;}
+  .cta-card p{font-size:18px;line-height:1.6;color:var(--muted);margin-bottom:36px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-wrap{max-width:800px;margin:0 auto;}
+  .faq-list{display:flex;flex-direction:column;gap:10px;}
+  .faq-item{overflow:hidden;border-radius:16px;}
+  .faq-btn{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;
+    padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;
+    text-align:left;transition:background .2s;}
+  .faq-btn:hover{background:rgba(255,255,255,.025);}
+  .faq-btn .q{font-weight:700;font-size:16px;color:var(--white);}
+  .faq-icon{flex:none;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:18px;color:var(--accent);
+    background:rgba(127,231,196,.08);border:1px solid rgba(127,231,196,.18);
+    transition:transform .25s;}
+  .faq-body{display:none;padding:0 26px 24px;font-size:15.5px;line-height:1.7;color:var(--muted);}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--border-soft);background:rgba(255,255,255,.012);margin-top:40px;}
+  .foot-top{max-width:var(--maxw);margin:0 auto;padding:48px 32px 36px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+  .foot-logo{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.9;}
+  .foot-links{display:flex;align-items:center;gap:28px;font-size:14.5px;font-weight:500;color:var(--muted);}
+  .footer-link{transition:color .2s;}
+  .footer-link:hover{color:var(--white);}
+  .foot-bottom{border-top:1px solid var(--border-soft);}
+  .foot-bottom .inner{max-width:var(--maxw);margin:0 auto;padding:22px 32px;font-size:13px;color:var(--muted-2);}
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    h1.hero-title{font-size:42px;}
+    .section-head h2{font-size:32px;}
+    .grid-3,.grid-4,.problem-grid,.stat-grid,.why-grid{grid-template-columns:1fr;}
+    .why-grid{gap:40px;}
+    .nav-links{display:none;}
+    .pad{padding:72px 0;}
+    .cta-card{padding:60px 28px;}
+    .cta-card h2{font-size:30px;}
+    .mock-stage{height:260px;}
+    .node-badge{display:none;}
+  }
+  @media (max-width:520px){
+    .container{padding:0 20px;}
+    h1.hero-title{font-size:34px;}
+  }
 </style>
 </head>
 <body>
 
+<!-- AMBIENT BACKGROUND -->
+<div class="aurora" aria-hidden="true">
+  <span class="a1"></span><span class="a2"></span><span class="a3"></span>
+</div>
+<div class="grid-texture" aria-hidden="true"></div>
+
+<div class="wrap">
+
 <!-- NAV -->
-<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid #E8EDF4;">
-  <nav style="max-width:1160px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-    <a href="#top" style="flex:none;">
-      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" style="height:40px;width:auto;">
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" style="flex:none;display:flex;align-items:center;">
+      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" class="nav-logo">
     </a>
-    <div style="display:flex;align-items:center;gap:32px;font-size:14.5px;font-weight:500;color:#4A5E78;">
+    <div class="nav-links">
       <a href="#beneficios" class="nav-link">Benefícios</a>
       <a href="#processo" class="nav-link">Processo</a>
       <a href="#equipa" class="nav-link">Equipa</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
-    <a href="#contacto" class="btn-nav" style="display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:10px;background:#0A2647;color:#fff;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px -6px rgba(10,38,71,.45);">Agendar demonstração</a>
-  </nav>
+    <a href="#contacto" class="btn-primary">Agendar demonstração</a>
+  </div>
 </header>
 
 <!-- HERO -->
-<section id="top" style="max-width:960px;margin:0 auto;padding:100px 32px 96px;text-align:center;">
-  <h1 style="font-weight:700;font-size:52px;line-height:1.1;letter-spacing:-.025em;margin-bottom:24px;text-wrap:balance;color:#0A2647;">Se alguém procurar a sua empresa hoje, o que encontra?</h1>
-  <p style="font-size:19px;line-height:1.65;color:#4A5E78;max-width:640px;margin:0 auto 40px;">Criamos websites pensados para atrair novos clientes, reforçar a sua credibilidade e valorizar a sua empresa no mercado.</p>
-  <a href="#contacto" class="btn-hero" style="display:inline-flex;align-items:center;gap:10px;padding:18px 34px;border-radius:12px;background:#0A2647;color:#fff;font-weight:700;font-size:17px;box-shadow:0 14px 30px -10px rgba(10,38,71,.5);transition:transform .2s,box-shadow .2s;">Agendar demonstração<span style="font-size:19px;line-height:1;">&rarr;</span></a>
-  <div style="position:relative;margin-top:72px;">
-    <div style="border-radius:20px;overflow:hidden;box-shadow:0 44px 80px -32px rgba(10,38,71,.28);border:1px solid #E8EDF4;background:#fff;">
-      <div style="display:flex;align-items:center;gap:7px;padding:13px 18px;border-bottom:1px solid #EEF2F8;background:#F8FAFC;">
-        <span style="width:11px;height:11px;border-radius:50%;background:#E4576A;display:inline-block;"></span>
-        <span style="width:11px;height:11px;border-radius:50%;background:#E9B84B;display:inline-block;"></span>
-        <span style="width:11px;height:11px;border-radius:50%;background:#4FB477;display:inline-block;"></span>
-        <div style="margin-left:14px;height:9px;flex:1;max-width:240px;border-radius:999px;background:#E8EDF4;"></div>
-      </div>
-      <div style="height:340px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#F5F8FC,#F5F8FC 14px,#ECF1F8 14px,#ECF1F8 28px);">
-        <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;color:#8FA0B8;letter-spacing:.02em;">website demo &middot; screenshot</span>
+<section id="top" class="hero">
+  <div class="container" style="position:relative;">
+    <span class="node-badge" style="top:10px;left:8%;animation-delay:.0s;"><span class="ic"></span>Presença no Google</span>
+    <span class="node-badge" style="top:60px;right:6%;animation-delay:1.2s;"><span class="ic"></span>Mais contactos</span>
+    <span class="node-badge" style="top:210px;left:3%;animation-delay:2.1s;"><span class="ic"></span>Confiança</span>
+
+    <span class="eyebrow"><span class="dot"></span>WebVentures · Presença digital</span>
+    <h1 class="hero-title" style="margin-top:26px;">Se alguém procurar a sua empresa hoje, o que encontra?</h1>
+    <p class="lead">Criamos websites pensados para atrair novos clientes, reforçar a sua credibilidade e valorizar a sua empresa no mercado.</p>
+    <div class="hero-cta">
+      <a href="#contacto" class="btn-primary btn-lg">Agendar demonstração<span class="arrow">&rarr;</span></a>
+      <a href="#beneficios" class="btn-ghost">Ver benefícios</a>
+    </div>
+
+    <!-- BROWSER MOCK -->
+    <div class="mock">
+      <div class="mock-frame">
+        <div class="mock-bar">
+          <span class="d" style="background:#F87171;"></span>
+          <span class="d" style="background:#FBBF24;"></span>
+          <span class="d" style="background:#34D399;"></span>
+          <div style="margin-left:14px;height:9px;flex:1;max-width:280px;border-radius:999px;background:rgba(255,255,255,.06);"></div>
+        </div>
+        <div class="mock-stage">
+          <div class="scan"></div>
+          <span class="mock-tag">website demo · screenshot</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PARA QUE SERVE -->
-<section style="background:#F5F8FB;border-top:1px solid #E8EDF4;border-bottom:1px solid #E8EDF4;">
-  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-    <div style="max-width:680px;margin-bottom:48px;">
-      <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Para que serve a presença digital?</span>
-      <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Muitas empresas fazem um excelente trabalho no dia a dia.</h2>
-      <p style="font-size:18px;line-height:1.65;color:#4A5E78;margin-top:16px;">Mas quando alguém procura a empresa online, essa qualidade não está refletida.</p>
+<section class="pad">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Para que serve a presença digital?</span>
+      <h2>Muitas empresas fazem um excelente trabalho no dia a dia.</h2>
+      <p class="lead">Mas quando alguém procura a empresa online, essa qualidade não está refletida.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:48px;">
-      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
-        <span style="font-size:16px;font-weight:600;color:#0A2647;">Dependência total de recomendações</span>
-      </div>
-      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
-        <span style="font-size:16px;font-weight:600;color:#0A2647;">Novos clientes não encontram a sua empresa</span>
-      </div>
-      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
-        <span style="font-size:16px;font-weight:600;color:#0A2647;">Imagem pouco profissional face à concorrência</span>
-      </div>
-      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
-        <span style="font-size:16px;font-weight:600;color:#0A2647;">Dificuldade em atrair bons profissionais</span>
-      </div>
+
+    <div class="problem-grid reveal" style="margin-top:48px;">
+      <div class="glass pill-row"><span class="warn"></span><span>Dependência total de recomendações</span></div>
+      <div class="glass pill-row"><span class="warn"></span><span>Novos clientes não encontram a sua empresa</span></div>
+      <div class="glass pill-row"><span class="warn"></span><span>Imagem pouco profissional face à concorrência</span></div>
+      <div class="glass pill-row"><span class="warn"></span><span>Dificuldade em atrair bons profissionais</span></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border-radius:16px;overflow:hidden;border:1px solid #E8EDF4;">
-      <div style="background:#0A2647;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;">
-        <div style="font-weight:800;font-size:48px;color:#fff;letter-spacing:-.03em;line-height:1;">97%</div>
-        <div style="font-size:15px;color:#8FABC8;font-weight:500;margin-top:8px;line-height:1.5;">dos consumidores pesquisam serviços na Internet</div>
+
+    <div class="stat-grid reveal">
+      <div class="glass stat">
+        <div class="num">97%</div>
+        <div class="desc">dos consumidores pesquisam serviços na Internet</div>
       </div>
-      <div style="width:1px;background:#1B3A5C;"></div>
-      <div style="background:#0A2647;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;">
-        <div style="font-weight:800;font-size:48px;color:#fff;letter-spacing:-.03em;line-height:1;">76%</div>
-        <div style="font-size:15px;color:#8FABC8;font-weight:500;margin-top:8px;line-height:1.5;">entram em contacto com uma empresa nas primeiras 24 horas</div>
+      <div class="glass stat">
+        <div class="num">76%</div>
+        <div class="desc">entram em contacto com uma empresa nas primeiras 24 horas</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- O QUE FAZEMOS -->
-<section style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-  <div style="max-width:700px;margin:0 auto 56px;text-align:center;">
-    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">O que fazemos</span>
-    <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Criamos websites pensados para representar a sua empresa da forma certa.</h2>
-    <p style="font-size:18px;line-height:1.65;color:#4A5E78;margin-top:16px;">E transformar a sua presença online numa ferramenta de crescimento.</p>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
-        <div style="width:18px;height:18px;border:2.5px solid #fff;border-radius:50%;position:relative;">
-          <div style="position:absolute;top:50%;left:50%;width:6px;height:6px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);"></div>
-        </div>
-      </div>
-      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Estruturado para gerar contactos</h3>
-      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Cada página é pensada para guiar o visitante até ao contacto, sem distrações.</p>
+<section class="pad">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>O que fazemos</span>
+      <h2>Criamos websites pensados para representar a sua empresa da forma certa.</h2>
+      <p class="lead">E transformar a sua presença online numa ferramenta de crescimento.</p>
     </div>
-    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
-        <div style="width:16px;height:18px;border:2.5px solid #fff;border-radius:3px;"></div>
-      </div>
-      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Pensado para transmitir confiança imediata</h3>
-      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Design profissional que faz a sua empresa parecer tão boa quanto realmente é.</p>
-    </div>
-    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
-      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
-        <div style="width:18px;height:2.5px;background:#fff;border-radius:2px;position:relative;">
-          <div style="position:absolute;top:-6px;left:0;right:0;height:2.5px;background:#fff;border-radius:2px;"></div>
-          <div style="position:absolute;top:6px;left:0;right:0;height:2.5px;background:#fff;border-radius:2px;"></div>
+
+    <div class="grid-3 reveal" style="margin-top:56px;">
+      <div class="glass card-pad">
+        <div class="icon-box">
+          <div style="width:18px;height:18px;border:2.5px solid var(--accent);border-radius:50%;position:relative;">
+            <div style="position:absolute;top:50%;left:50%;width:6px;height:6px;background:var(--accent);border-radius:50%;transform:translate(-50%,-50%);"></div>
+          </div>
         </div>
+        <h3>Estruturado para gerar contactos</h3>
+        <p>Cada página é pensada para guiar o visitante até ao contacto, sem distrações.</p>
       </div>
-      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Clareza total nos serviços e proposta de valor</h3>
-      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Informação organizada para que o visitante perceba em segundos o que a sua empresa faz.</p>
+      <div class="glass card-pad">
+        <div class="icon-box">
+          <div style="width:16px;height:18px;border:2.5px solid var(--accent);border-radius:3px;"></div>
+        </div>
+        <h3>Pensado para transmitir confiança imediata</h3>
+        <p>Design profissional que faz a sua empresa parecer tão boa quanto realmente é.</p>
+      </div>
+      <div class="glass card-pad">
+        <div class="icon-box">
+          <div style="width:18px;height:2.5px;background:var(--accent);border-radius:2px;position:relative;">
+            <div style="position:absolute;top:-6px;left:0;right:0;height:2.5px;background:var(--accent);border-radius:2px;"></div>
+            <div style="position:absolute;top:6px;left:0;right:0;height:2.5px;background:var(--accent);border-radius:2px;"></div>
+          </div>
+        </div>
+        <h3>Clareza total nos serviços e proposta de valor</h3>
+        <p>Informação organizada para que o visitante perceba em segundos o que a sua empresa faz.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- BENEFÍCIOS -->
-<section id="beneficios" style="background:#0A2647;color:#fff;">
-  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-    <div style="max-width:720px;margin-bottom:56px;">
-      <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5A9FE6;">Os 3 benefícios</span>
-      <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Um website que trabalha para a sua empresa em três frentes</h2>
+<section id="beneficios" class="pad">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Os 3 benefícios</span>
+      <h2>Um website que trabalha para a sua empresa em três frentes</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+    <div class="grid-3 reveal" style="margin-top:56px;">
       <!-- Benefit 1 -->
-      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
-        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
-          <div style="width:20px;height:20px;border-radius:50%;border:2.5px solid #5A9FE6;position:relative;">
-            <div style="position:absolute;width:8px;height:2.5px;background:#5A9FE6;border-radius:2px;top:50%;left:100%;transform:translateY(-50%);margin-left:2px;"></div>
-            <div style="position:absolute;width:2.5px;height:8px;background:#5A9FE6;border-radius:2px;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:2px;"></div>
+      <div class="glass card-pad benefit">
+        <div class="icon-box">
+          <div style="width:20px;height:20px;border-radius:50%;border:2.5px solid var(--accent);position:relative;">
+            <div style="position:absolute;width:8px;height:2.5px;background:var(--accent);border-radius:2px;top:50%;left:100%;transform:translateY(-50%);margin-left:2px;"></div>
+            <div style="position:absolute;width:2.5px;height:8px;background:var(--accent);border-radius:2px;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:2px;"></div>
           </div>
         </div>
-        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Novos clientes</h3>
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Presença no Google</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Facilidade em ser encontrado</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Mais contactos sem depender apenas de recomendações</span>
-          </div>
+        <h3>Novos clientes</h3>
+        <div class="dot-list">
+          <div class="li"><span class="d"></span><span>Presença no Google</span></div>
+          <div class="li"><span class="d"></span><span>Facilidade em ser encontrado</span></div>
+          <div class="li"><span class="d"></span><span>Mais contactos sem depender apenas de recomendações</span></div>
         </div>
       </div>
       <!-- Benefit 2 -->
-      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
-        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
-          <div style="width:18px;height:20px;border:2.5px solid #5A9FE6;border-radius:3px 3px 10px 10px;position:relative;">
-            <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;background:#5A9FE6;border-radius:2px;"></div>
+      <div class="glass card-pad benefit">
+        <div class="icon-box">
+          <div style="width:18px;height:20px;border:2.5px solid var(--accent);border-radius:3px 3px 10px 10px;position:relative;">
+            <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;background:var(--accent);border-radius:2px;"></div>
           </div>
         </div>
-        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Confiança</h3>
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Primeira impressão forte</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Imagem profissional e de confiança</span>
-          </div>
+        <h3>Confiança</h3>
+        <div class="dot-list">
+          <div class="li"><span class="d"></span><span>Primeira impressão forte</span></div>
+          <div class="li"><span class="d"></span><span>Imagem profissional e de confiança</span></div>
         </div>
       </div>
       <!-- Benefit 3 -->
-      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
-        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
+      <div class="glass card-pad benefit">
+        <div class="icon-box">
           <div style="width:22px;height:14px;position:relative;">
-            <div style="position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid #5A9FE6;"></div>
-            <div style="position:absolute;right:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid #5A9FE6;"></div>
+            <div style="position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--accent);"></div>
+            <div style="position:absolute;right:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid var(--accent);"></div>
           </div>
         </div>
-        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Mão de obra</h3>
-        <div style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Maior acesso a mão de obra</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Empresa mais atrativa para candidatos</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
-            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Perceção de organização e profissionalismo</span>
-          </div>
+        <h3>Mão de obra</h3>
+        <div class="dot-list">
+          <div class="li"><span class="d"></span><span>Maior acesso a mão de obra</span></div>
+          <div class="li"><span class="d"></span><span>Empresa mais atrativa para candidatos</span></div>
+          <div class="li"><span class="d"></span><span>Perceção de organização e profissionalismo</span></div>
         </div>
       </div>
     </div>
@@ -245,76 +488,61 @@
 </section>
 
 <!-- PROCESSO -->
-<section id="processo" style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-  <div style="max-width:700px;margin:0 auto 60px;text-align:center;">
-    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Processo</span>
-    <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Um processo simples, rápido e sem complicações.</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
-    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
-      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">01</div>
-      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Demonstração do website inicial</h3>
+<section id="processo" class="pad">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span>Processo</span>
+      <h2>Um processo simples, rápido e sem complicações.</h2>
     </div>
-    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
-      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">02</div>
-      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Personalização à medida</h3>
-    </div>
-    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
-      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">03</div>
-      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Revisão</h3>
-    </div>
-    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
-      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">04</div>
-      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Publicação e Otimização</h3>
+
+    <div class="grid-4 reveal" style="margin-top:60px;">
+      <div class="glass card-pad step">
+        <div class="n">01</div>
+        <h3>Demonstração do website inicial</h3>
+      </div>
+      <div class="glass card-pad step">
+        <div class="n">02</div>
+        <h3>Personalização à medida</h3>
+      </div>
+      <div class="glass card-pad step">
+        <div class="n">03</div>
+        <h3>Revisão</h3>
+      </div>
+      <div class="glass card-pad step">
+        <div class="n">04</div>
+        <h3>Publicação e Otimização</h3>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PORQUÊ WEBVENTURES -->
-<section id="equipa" style="background:#F5F8FB;border-top:1px solid #E8EDF4;border-bottom:1px solid #E8EDF4;">
-  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
-      <div>
-        <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Porquê a WebVentures?</span>
-        <h2 style="font-weight:700;font-size:36px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;margin-bottom:32px;text-wrap:balance;">Uma equipa focada em resultados reais.</h2>
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
-            <span style="font-size:16px;font-weight:600;color:#0A2647;">Foco em resultados, não apenas design</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
-            <span style="font-size:16px;font-weight:600;color:#0A2647;">Pensado para atrair clientes e talento</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
-            <span style="font-size:16px;font-weight:600;color:#0A2647;">Estrutura orientada à confiança</span>
-          </div>
+<section id="equipa" class="pad">
+  <div class="container">
+    <div class="why-grid">
+      <div class="reveal">
+        <span class="eyebrow"><span class="dot"></span>Porquê a WebVentures?</span>
+        <h2 style="font-weight:700;font-size:36px;line-height:1.12;margin-top:20px;margin-bottom:32px;">Uma equipa focada em resultados reais.</h2>
+        <div class="why-list">
+          <div class="glass why-row"><span class="d"></span><span>Foco em resultados, não apenas design</span></div>
+          <div class="glass why-row"><span class="d"></span><span>Pensado para atrair clientes e talento</span></div>
+          <div class="glass why-row"><span class="d"></span><span>Estrutura orientada à confiança</span></div>
         </div>
       </div>
-      <div>
-        <h3 style="font-weight:700;font-size:16px;color:#4A5E78;margin-bottom:24px;letter-spacing:.04em;text-transform:uppercase;">A equipa</h3>
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">AT</div>
-            <div>
-              <div style="font-weight:700;font-size:16px;color:#0A2647;">António Tomás</div>
-              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">CEO</div>
-            </div>
+      <div class="reveal">
+        <div class="team-label">A equipa</div>
+        <div class="why-list">
+          <div class="glass member">
+            <div class="avatar">AT</div>
+            <div><div class="name">António Tomás</div><div class="role">CEO</div></div>
           </div>
-          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">BM</div>
-            <div>
-              <div style="font-weight:700;font-size:16px;color:#0A2647;">Bernardo Martins</div>
-              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">Web Developer</div>
-            </div>
+          <div class="glass member">
+            <div class="avatar">BM</div>
+            <div><div class="name">Bernardo Martins</div><div class="role">Web Developer</div></div>
           </div>
-          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
-            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">RO</div>
-            <div>
-              <div style="font-weight:700;font-size:16px;color:#0A2647;">Rafael Oliveira</div>
-              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">Web Developer</div>
-            </div>
+          <div class="glass member">
+            <div class="avatar">RO</div>
+            <div><div class="name">Rafael Oliveira</div><div class="role">Web Developer</div></div>
           </div>
         </div>
       </div>
@@ -323,91 +551,98 @@
 </section>
 
 <!-- CTA -->
-<section id="contacto" style="max-width:1160px;margin:0 auto;padding:96px 32px;">
-  <div style="position:relative;overflow:hidden;border-radius:24px;background:#0A2647;color:#fff;padding:80px 56px;text-align:center;">
-    <div style="position:absolute;left:-80px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(90,159,230,.2),transparent 68%);"></div>
-    <div style="position:absolute;right:-60px;top:-80px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(90,159,230,.15),transparent 68%);"></div>
-    <div style="position:relative;max-width:620px;margin:0 auto;">
-      <h2 style="font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-.025em;margin-bottom:18px;text-wrap:balance;">Veja como ficaria um website para a sua empresa e o seu impacto</h2>
-      <p style="font-size:18px;line-height:1.6;color:#8FABC8;margin-bottom:36px;">20 minutos para perceber o potencial da sua presença online.</p>
-      <a href="#" class="btn-cta" style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;padding:18px 36px;border-radius:12px;background:#fff;color:#0A2647;font-weight:700;font-size:17px;box-shadow:0 16px 32px -12px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s;">Agendar demonstração<span style="font-size:19px;line-height:1;">&rarr;</span></a>
+<section id="contacto" class="pad">
+  <div class="container">
+    <div class="cta-card reveal">
+      <span class="glow g1"></span><span class="glow g2"></span>
+      <div class="inner">
+        <h2>Veja como ficaria um website para a sua empresa e o seu impacto</h2>
+        <p>20 minutos para perceber o potencial da sua presença online.</p>
+        <a href="#" class="btn-primary btn-lg">Agendar demonstração<span class="arrow">&rarr;</span></a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" style="max-width:780px;margin:0 auto;padding:32px 32px 96px;">
-  <div style="text-align:center;margin-bottom:48px;">
-    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">FAQ</span>
-    <h2 style="font-weight:700;font-size:36px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;">Perguntas frequentes</h2>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:8px;" id="faq-list">
-    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
-      <button class="faq-btn" onclick="toggleFaq(0)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
-        <span style="font-weight:700;font-size:16px;color:#0A2647;">Quanto custa?</span>
-        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
-      </button>
-      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">O investimento depende do tipo de website, mas focamo-nos em soluções simples com impacto real.</div>
-    </div>
-    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
-      <button class="faq-btn" onclick="toggleFaq(1)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
-        <span style="font-weight:700;font-size:16px;color:#0A2647;">Quanto tempo demora?</span>
-        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
-      </button>
-      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Normalmente entre 48h a 72h.</div>
-    </div>
-    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
-      <button class="faq-btn" onclick="toggleFaq(2)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
-        <span style="font-weight:700;font-size:16px;color:#0A2647;">Preciso de enviar conteúdo?</span>
-        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
-      </button>
-      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Não, ajudamos a estruturar tudo consigo.</div>
-    </div>
-    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
-      <button class="faq-btn" onclick="toggleFaq(3)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
-        <span style="font-weight:700;font-size:16px;color:#0A2647;">Isto ajuda mesmo a atrair clientes?</span>
-        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
-      </button>
-      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Sim, o objetivo é colocar a página nas primeiras opções do Google e facilitar alguém que não o conhece a encontrar informação clara e avançar para contacto.</div>
-    </div>
-    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
-      <button class="faq-btn" onclick="toggleFaq(4)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
-        <span style="font-weight:700;font-size:16px;color:#0A2647;">E na contratação de funcionários?</span>
-        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
-      </button>
-      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Empresas que aparecem no Google com presença profissional têm maior facilidade em atrair candidatos.</div>
+<section id="faq" style="padding:20px 0 104px;">
+  <div class="container">
+    <div class="faq-wrap">
+      <div class="section-head center reveal" style="margin-bottom:48px;">
+        <span class="eyebrow"><span class="dot"></span>FAQ</span>
+        <h2>Perguntas frequentes</h2>
+      </div>
+      <div class="faq-list reveal" id="faq-list">
+        <div class="glass faq-item">
+          <button class="faq-btn" onclick="toggleFaq(0)">
+            <span class="q">Quanto custa?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">O investimento depende do tipo de website, mas focamo-nos em soluções simples com impacto real.</div>
+        </div>
+        <div class="glass faq-item">
+          <button class="faq-btn" onclick="toggleFaq(1)">
+            <span class="q">Quanto tempo demora?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">Normalmente entre 48h a 72h.</div>
+        </div>
+        <div class="glass faq-item">
+          <button class="faq-btn" onclick="toggleFaq(2)">
+            <span class="q">Preciso de enviar conteúdo?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">Não, ajudamos a estruturar tudo consigo.</div>
+        </div>
+        <div class="glass faq-item">
+          <button class="faq-btn" onclick="toggleFaq(3)">
+            <span class="q">Isto ajuda mesmo a atrair clientes?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">Sim, o objetivo é colocar a página nas primeiras opções do Google e facilitar alguém que não o conhece a encontrar informação clara e avançar para contacto.</div>
+        </div>
+        <div class="glass faq-item">
+          <button class="faq-btn" onclick="toggleFaq(4)">
+            <span class="q">E na contratação de funcionários?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">Empresas que aparecem no Google com presença profissional têm maior facilidade em atrair candidatos.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer style="background:#0A2647;color:#fff;">
-  <div style="max-width:1160px;margin:0 auto;padding:56px 32px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+<footer>
+  <div class="foot-top">
     <div style="display:flex;align-items:center;gap:14px;">
-      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" style="height:34px;width:auto;filter:brightness(0) invert(1);">
+      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" class="foot-logo">
     </div>
-    <div style="display:flex;align-items:center;gap:28px;font-size:14.5px;font-weight:500;color:#8FABC8;">
-      <a href="#beneficios" class="footer-link" style="transition:color .2s;">Benefícios</a>
-      <a href="#processo" class="footer-link" style="transition:color .2s;">Processo</a>
-      <a href="#equipa" class="footer-link" style="transition:color .2s;">Equipa</a>
-      <a href="#faq" class="footer-link" style="transition:color .2s;">FAQ</a>
+    <div class="foot-links">
+      <a href="#beneficios" class="footer-link">Benefícios</a>
+      <a href="#processo" class="footer-link">Processo</a>
+      <a href="#equipa" class="footer-link">Equipa</a>
+      <a href="#faq" class="footer-link">FAQ</a>
     </div>
-    <a href="#contacto" class="btn-footer" style="display:inline-flex;align-items:center;padding:11px 22px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-weight:600;font-size:14px;border:1px solid rgba(255,255,255,.15);transition:background .2s;">Agendar demonstração</a>
+    <a href="#contacto" class="btn-ghost" style="padding:12px 24px;font-size:14px;">Agendar demonstração</a>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,.1);">
-    <div style="max-width:1160px;margin:0 auto;padding:22px 32px;font-size:13px;color:#5A7A9A;">© 2026 WebVentures. Todos os direitos reservados.</div>
+  <div class="foot-bottom">
+    <div class="inner">© 2026 WebVentures. Todos os direitos reservados.</div>
   </div>
 </footer>
 
-<script>
-  var openFaq = -1;
+</div><!-- /wrap -->
 
-  function toggleFaq(index) {
+<script>
+  // FAQ accordion
+  var openFaq = -1;
+  function toggleFaq(index){
     var items = document.querySelectorAll('.faq-item');
-    items.forEach(function(item, i) {
+    items.forEach(function(item,i){
       var body = item.querySelector('.faq-body');
       var icon = item.querySelector('.faq-icon');
-      if (i === index) {
+      if(i === index){
         var isOpen = openFaq === index;
         body.style.display = isOpen ? 'none' : 'block';
         icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(45deg)';
@@ -418,6 +653,14 @@
       }
     });
   }
+
+  // Scroll reveal
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 </script>
 </body>
 </html>
