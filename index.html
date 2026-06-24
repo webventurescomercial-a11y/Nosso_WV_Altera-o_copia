@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebVentures – Websites que geram resultados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: #fff;
+    color: #0A2647;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* NAV */
+  .nav-link { transition: color .2s; }
+  .nav-link:hover { color: #0A2647; }
+  .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(10,38,71,.5) !important; }
+
+  /* HERO */
+  .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 20px 38px -10px rgba(10,38,71,.55) !important; }
+
+  /* Problem cards */
+  .problem-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -16px rgba(10,38,71,.2); }
+
+  /* What-we-do cards */
+  .service-card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(10,38,71,.22); }
+
+  /* Benefit cards */
+  .benefit-card:hover { background: rgba(255,255,255,.1) !important; border-color: rgba(255,255,255,.2) !important; transform: translateY(-3px); }
+
+  /* FAQ */
+  .faq-btn:hover { background: #EDF1F8; }
+  .faq-icon { transition: transform .25s; display: inline-block; }
+
+  /* CTA button */
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -12px rgba(0,0,0,.4) !important; }
+
+  /* Footer links */
+  .footer-link:hover { color: #fff; }
+  .btn-footer:hover { background: rgba(255,255,255,.15) !important; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid #E8EDF4;">
+  <nav style="max-width:1160px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="#top" style="flex:none;">
+      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" style="height:40px;width:auto;">
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;font-size:14.5px;font-weight:500;color:#4A5E78;">
+      <a href="#beneficios" class="nav-link">Benefícios</a>
+      <a href="#processo" class="nav-link">Processo</a>
+      <a href="#equipa" class="nav-link">Equipa</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+    <a href="#contacto" class="btn-nav" style="display:inline-flex;align-items:center;white-space:nowrap;padding:12px 22px;border-radius:10px;background:#0A2647;color:#fff;font-weight:600;font-size:14px;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px -6px rgba(10,38,71,.45);">Agendar demonstração</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="top" style="max-width:960px;margin:0 auto;padding:100px 32px 96px;text-align:center;">
+  <h1 style="font-weight:700;font-size:52px;line-height:1.1;letter-spacing:-.025em;margin-bottom:24px;text-wrap:balance;color:#0A2647;">Se alguém procurar a sua empresa hoje, o que encontra?</h1>
+  <p style="font-size:19px;line-height:1.65;color:#4A5E78;max-width:640px;margin:0 auto 40px;">Criamos websites pensados para atrair novos clientes, reforçar a sua credibilidade e valorizar a sua empresa no mercado.</p>
+  <a href="#contacto" class="btn-hero" style="display:inline-flex;align-items:center;gap:10px;padding:18px 34px;border-radius:12px;background:#0A2647;color:#fff;font-weight:700;font-size:17px;box-shadow:0 14px 30px -10px rgba(10,38,71,.5);transition:transform .2s,box-shadow .2s;">Agendar demonstração<span style="font-size:19px;line-height:1;">&rarr;</span></a>
+  <div style="position:relative;margin-top:72px;">
+    <div style="border-radius:20px;overflow:hidden;box-shadow:0 44px 80px -32px rgba(10,38,71,.28);border:1px solid #E8EDF4;background:#fff;">
+      <div style="display:flex;align-items:center;gap:7px;padding:13px 18px;border-bottom:1px solid #EEF2F8;background:#F8FAFC;">
+        <span style="width:11px;height:11px;border-radius:50%;background:#E4576A;display:inline-block;"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#E9B84B;display:inline-block;"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#4FB477;display:inline-block;"></span>
+        <div style="margin-left:14px;height:9px;flex:1;max-width:240px;border-radius:999px;background:#E8EDF4;"></div>
+      </div>
+      <div style="height:340px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#F5F8FC,#F5F8FC 14px,#ECF1F8 14px,#ECF1F8 28px);">
+        <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;color:#8FA0B8;letter-spacing:.02em;">website demo &middot; screenshot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUE SERVE -->
+<section style="background:#F5F8FB;border-top:1px solid #E8EDF4;border-bottom:1px solid #E8EDF4;">
+  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+    <div style="max-width:680px;margin-bottom:48px;">
+      <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Para que serve a presença digital?</span>
+      <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Muitas empresas fazem um excelente trabalho no dia a dia.</h2>
+      <p style="font-size:18px;line-height:1.65;color:#4A5E78;margin-top:16px;">Mas quando alguém procura a empresa online, essa qualidade não está refletida.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:48px;">
+      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
+        <span style="font-size:16px;font-weight:600;color:#0A2647;">Dependência total de recomendações</span>
+      </div>
+      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
+        <span style="font-size:16px;font-weight:600;color:#0A2647;">Novos clientes não encontram a sua empresa</span>
+      </div>
+      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
+        <span style="font-size:16px;font-weight:600;color:#0A2647;">Imagem pouco profissional face à concorrência</span>
+      </div>
+      <div class="problem-card" style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+        <div style="flex:none;width:10px;height:10px;border-radius:50%;background:#D94F4F;"></div>
+        <span style="font-size:16px;font-weight:600;color:#0A2647;">Dificuldade em atrair bons profissionais</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border-radius:16px;overflow:hidden;border:1px solid #E8EDF4;">
+      <div style="background:#0A2647;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-weight:800;font-size:48px;color:#fff;letter-spacing:-.03em;line-height:1;">97%</div>
+        <div style="font-size:15px;color:#8FABC8;font-weight:500;margin-top:8px;line-height:1.5;">dos consumidores pesquisam serviços na Internet</div>
+      </div>
+      <div style="width:1px;background:#1B3A5C;"></div>
+      <div style="background:#0A2647;padding:36px 40px;display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-weight:800;font-size:48px;color:#fff;letter-spacing:-.03em;line-height:1;">76%</div>
+        <div style="font-size:15px;color:#8FABC8;font-weight:500;margin-top:8px;line-height:1.5;">entram em contacto com uma empresa nas primeiras 24 horas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE FAZEMOS -->
+<section style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+  <div style="max-width:700px;margin:0 auto 56px;text-align:center;">
+    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">O que fazemos</span>
+    <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Criamos websites pensados para representar a sua empresa da forma certa.</h2>
+    <p style="font-size:18px;line-height:1.65;color:#4A5E78;margin-top:16px;">E transformar a sua presença online numa ferramenta de crescimento.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
+        <div style="width:18px;height:18px;border:2.5px solid #fff;border-radius:50%;position:relative;">
+          <div style="position:absolute;top:50%;left:50%;width:6px;height:6px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);"></div>
+        </div>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Estruturado para gerar contactos</h3>
+      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Cada página é pensada para guiar o visitante até ao contacto, sem distrações.</p>
+    </div>
+    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
+        <div style="width:16px;height:18px;border:2.5px solid #fff;border-radius:3px;"></div>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Pensado para transmitir confiança imediata</h3>
+      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Design profissional que faz a sua empresa parecer tão boa quanto realmente é.</p>
+    </div>
+    <div class="service-card" style="padding:36px 30px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;transition:transform .2s,box-shadow .2s;">
+      <div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:#0A2647;margin-bottom:22px;">
+        <div style="width:18px;height:2.5px;background:#fff;border-radius:2px;position:relative;">
+          <div style="position:absolute;top:-6px;left:0;right:0;height:2.5px;background:#fff;border-radius:2px;"></div>
+          <div style="position:absolute;top:6px;left:0;right:0;height:2.5px;background:#fff;border-radius:2px;"></div>
+        </div>
+      </div>
+      <h3 style="font-weight:700;font-size:19px;margin-bottom:10px;">Clareza total nos serviços e proposta de valor</h3>
+      <p style="font-size:15px;line-height:1.65;color:#4A5E78;">Informação organizada para que o visitante perceba em segundos o que a sua empresa faz.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section id="beneficios" style="background:#0A2647;color:#fff;">
+  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+    <div style="max-width:720px;margin-bottom:56px;">
+      <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5A9FE6;">Os 3 benefícios</span>
+      <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Um website que trabalha para a sua empresa em três frentes</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <!-- Benefit 1 -->
+      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
+          <div style="width:20px;height:20px;border-radius:50%;border:2.5px solid #5A9FE6;position:relative;">
+            <div style="position:absolute;width:8px;height:2.5px;background:#5A9FE6;border-radius:2px;top:50%;left:100%;transform:translateY(-50%);margin-left:2px;"></div>
+            <div style="position:absolute;width:2.5px;height:8px;background:#5A9FE6;border-radius:2px;left:50%;bottom:100%;transform:translateX(-50%);margin-bottom:2px;"></div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Novos clientes</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Presença no Google</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Facilidade em ser encontrado</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Mais contactos sem depender apenas de recomendações</span>
+          </div>
+        </div>
+      </div>
+      <!-- Benefit 2 -->
+      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
+          <div style="width:18px;height:20px;border:2.5px solid #5A9FE6;border-radius:3px 3px 10px 10px;position:relative;">
+            <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:2.5px;height:7px;background:#5A9FE6;border-radius:2px;"></div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Confiança</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Primeira impressão forte</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Imagem profissional e de confiança</span>
+          </div>
+        </div>
+      </div>
+      <!-- Benefit 3 -->
+      <div class="benefit-card" style="padding:38px 30px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s,border-color .25s,transform .25s;">
+        <div style="display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:14px;background:rgba(90,159,230,.15);margin-bottom:24px;">
+          <div style="width:22px;height:14px;position:relative;">
+            <div style="position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid #5A9FE6;"></div>
+            <div style="position:absolute;right:0;top:2px;width:12px;height:12px;border-radius:50%;border:2.5px solid #5A9FE6;"></div>
+          </div>
+        </div>
+        <h3 style="font-weight:700;font-size:22px;margin-bottom:20px;">Mão de obra</h3>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Maior acesso a mão de obra</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Empresa mais atrativa para candidatos</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="flex:none;width:7px;height:7px;border-radius:50%;background:#5A9FE6;"></div>
+            <span style="font-size:15px;font-weight:500;color:#B8CDE4;">Perceção de organização e profissionalismo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+  <div style="max-width:700px;margin:0 auto 60px;text-align:center;">
+    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Processo</span>
+    <h2 style="font-weight:700;font-size:38px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;text-wrap:balance;">Um processo simples, rápido e sem complicações.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
+      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">01</div>
+      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Demonstração do website inicial</h3>
+    </div>
+    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
+      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">02</div>
+      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Personalização à medida</h3>
+    </div>
+    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
+      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">03</div>
+      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Revisão</h3>
+    </div>
+    <div style="padding:32px 26px;border-radius:18px;background:#F5F8FB;border:1px solid #E8EDF4;">
+      <div style="font-weight:800;font-size:44px;color:#D0DCE8;letter-spacing:-.03em;line-height:1;margin-bottom:18px;">04</div>
+      <h3 style="font-weight:700;font-size:18px;margin-bottom:8px;color:#0A2647;">Publicação e Otimização</h3>
+    </div>
+  </div>
+</section>
+
+<!-- PORQUÊ WEBVENTURES -->
+<section id="equipa" style="background:#F5F8FB;border-top:1px solid #E8EDF4;border-bottom:1px solid #E8EDF4;">
+  <div style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+      <div>
+        <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">Porquê a WebVentures?</span>
+        <h2 style="font-weight:700;font-size:36px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;margin-bottom:32px;text-wrap:balance;">Uma equipa focada em resultados reais.</h2>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
+            <span style="font-size:16px;font-weight:600;color:#0A2647;">Foco em resultados, não apenas design</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
+            <span style="font-size:16px;font-weight:600;color:#0A2647;">Pensado para atrair clientes e talento</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:8px;height:8px;border-radius:50%;background:#0A2647;"></div>
+            <span style="font-size:16px;font-weight:600;color:#0A2647;">Estrutura orientada à confiança</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-weight:700;font-size:16px;color:#4A5E78;margin-bottom:24px;letter-spacing:.04em;text-transform:uppercase;">A equipa</h3>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">AT</div>
+            <div>
+              <div style="font-weight:700;font-size:16px;color:#0A2647;">António Tomás</div>
+              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">CEO</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">BM</div>
+            <div>
+              <div style="font-weight:700;font-size:16px;color:#0A2647;">Bernardo Martins</div>
+              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">Web Developer</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:18px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid #E8EDF4;">
+            <div style="flex:none;width:52px;height:52px;border-radius:50%;background:#0A2647;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;letter-spacing:.02em;">RO</div>
+            <div>
+              <div style="font-weight:700;font-size:16px;color:#0A2647;">Rafael Oliveira</div>
+              <div style="font-size:14px;color:#6B7B91;font-weight:500;margin-top:2px;">Web Developer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacto" style="max-width:1160px;margin:0 auto;padding:96px 32px;">
+  <div style="position:relative;overflow:hidden;border-radius:24px;background:#0A2647;color:#fff;padding:80px 56px;text-align:center;">
+    <div style="position:absolute;left:-80px;bottom:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(90,159,230,.2),transparent 68%);"></div>
+    <div style="position:absolute;right:-60px;top:-80px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(90,159,230,.15),transparent 68%);"></div>
+    <div style="position:relative;max-width:620px;margin:0 auto;">
+      <h2 style="font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-.025em;margin-bottom:18px;text-wrap:balance;">Veja como ficaria um website para a sua empresa e o seu impacto</h2>
+      <p style="font-size:18px;line-height:1.6;color:#8FABC8;margin-bottom:36px;">20 minutos para perceber o potencial da sua presença online.</p>
+      <a href="#" class="btn-cta" style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;padding:18px 36px;border-radius:12px;background:#fff;color:#0A2647;font-weight:700;font-size:17px;box-shadow:0 16px 32px -12px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s;">Agendar demonstração<span style="font-size:19px;line-height:1;">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="max-width:780px;margin:0 auto;padding:32px 32px 96px;">
+  <div style="text-align:center;margin-bottom:48px;">
+    <span style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2E6DB4;">FAQ</span>
+    <h2 style="font-weight:700;font-size:36px;line-height:1.12;letter-spacing:-.02em;margin-top:16px;">Perguntas frequentes</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px;" id="faq-list">
+    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
+      <button class="faq-btn" onclick="toggleFaq(0)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
+        <span style="font-weight:700;font-size:16px;color:#0A2647;">Quanto custa?</span>
+        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
+      </button>
+      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">O investimento depende do tipo de website, mas focamo-nos em soluções simples com impacto real.</div>
+    </div>
+    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
+      <button class="faq-btn" onclick="toggleFaq(1)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
+        <span style="font-weight:700;font-size:16px;color:#0A2647;">Quanto tempo demora?</span>
+        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
+      </button>
+      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Normalmente entre 48h a 72h.</div>
+    </div>
+    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
+      <button class="faq-btn" onclick="toggleFaq(2)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
+        <span style="font-weight:700;font-size:16px;color:#0A2647;">Preciso de enviar conteúdo?</span>
+        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
+      </button>
+      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Não, ajudamos a estruturar tudo consigo.</div>
+    </div>
+    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
+      <button class="faq-btn" onclick="toggleFaq(3)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
+        <span style="font-weight:700;font-size:16px;color:#0A2647;">Isto ajuda mesmo a atrair clientes?</span>
+        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
+      </button>
+      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Sim, o objetivo é colocar a página nas primeiras opções do Google e facilitar alguém que não o conhece a encontrar informação clara e avançar para contacto.</div>
+    </div>
+    <div class="faq-item" style="border-radius:14px;background:#F5F8FB;border:1px solid #E8EDF4;overflow:hidden;">
+      <button class="faq-btn" onclick="toggleFaq(4)" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:22px 26px;border:none;background:transparent;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s;">
+        <span style="font-weight:700;font-size:16px;color:#0A2647;">E na contratação de funcionários?</span>
+        <span class="faq-icon" style="flex:none;font-size:20px;color:#4A5E78;">+</span>
+      </button>
+      <div class="faq-body" style="display:none;padding:0 26px 22px;font-size:15.5px;line-height:1.65;color:#4A5E78;">Empresas que aparecem no Google com presença profissional têm maior facilidade em atrair candidatos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0A2647;color:#fff;">
+  <div style="max-width:1160px;margin:0 auto;padding:56px 32px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="uploads/pasted-1782258609085-0.png" alt="WebVentures" style="height:34px;width:auto;filter:brightness(0) invert(1);">
+    </div>
+    <div style="display:flex;align-items:center;gap:28px;font-size:14.5px;font-weight:500;color:#8FABC8;">
+      <a href="#beneficios" class="footer-link" style="transition:color .2s;">Benefícios</a>
+      <a href="#processo" class="footer-link" style="transition:color .2s;">Processo</a>
+      <a href="#equipa" class="footer-link" style="transition:color .2s;">Equipa</a>
+      <a href="#faq" class="footer-link" style="transition:color .2s;">FAQ</a>
+    </div>
+    <a href="#contacto" class="btn-footer" style="display:inline-flex;align-items:center;padding:11px 22px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-weight:600;font-size:14px;border:1px solid rgba(255,255,255,.15);transition:background .2s;">Agendar demonstração</a>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.1);">
+    <div style="max-width:1160px;margin:0 auto;padding:22px 32px;font-size:13px;color:#5A7A9A;">© 2026 WebVentures. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+  var openFaq = -1;
+
+  function toggleFaq(index) {
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function(item, i) {
+      var body = item.querySelector('.faq-body');
+      var icon = item.querySelector('.faq-icon');
+      if (i === index) {
+        var isOpen = openFaq === index;
+        body.style.display = isOpen ? 'none' : 'block';
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(45deg)';
+        openFaq = isOpen ? -1 : index;
+      } else {
+        body.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+</script>
+</body>
+</html>
