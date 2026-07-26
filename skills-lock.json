@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "dribbble-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/dribbble/SKILL.md",
+      "computedHash": "c68bc0d2e6dd84a3ae4748710552a1f2067bf560f22d24f32e2ab050689a917c"
+    }
+  }
+}

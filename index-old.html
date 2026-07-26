@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebVentures – Websites que geram resultados</title>
+<meta name="description" content="WebVentures cria websites profissionais para pequenas e médias empresas. Atraia mais clientes, transmita confiança e destaque-se no Google. Entrega em 72 horas, demonstração 100% gratuita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Aurora ambient light -->
+<div class="aurora">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-tex"></div>
+
+<div class="wrap">
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<header>
+  <div class="nav-inner">
+    <a href="#top">
+      <img src="uploads/pasted-1782258618052-0.png" alt="WebVentures" class="nav-logo">
+    </a>
+    <nav class="nav-links">
+      <a href="#top"      class="nav-link">Home</a>
+      <a href="precos.html" class="nav-link">Preço</a>
+      <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="#contacto" class="nav-link">Contactos</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+    </button>
+    <a href="#contacto" class="btn-white">Agendar demonstração</a>
+  </div>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+  <nav class="mobile-nav">
+    <a href="#top"      class="mobile-link">Home</a>
+    <a href="precos.html" class="mobile-link">Preço</a>
+    <a href="portfolio.html" class="mobile-link">Portfolio</a>
+    <a href="#contacto" class="mobile-link">Contactos</a>
+  </nav>
+  <a href="#contacto" class="btn-hero mobile-cta">Agendar demonstração <span class="arrow">&#8594;</span></a>
+</div>
+
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section id="top" class="hero">
+
+  <!-- Geometric background: wireframe circles, diagonal lines, dot grid -->
+  <div class="hero-geo" aria-hidden="true">
+    <div class="hgeo-circle hgeo-c1"></div>
+    <div class="hgeo-circle hgeo-c2"></div>
+    <div class="hgeo-circle hgeo-c3"></div>
+    <div class="hgeo-line hgeo-l1"></div>
+    <div class="hgeo-line hgeo-l2"></div>
+    <div class="hgeo-line hgeo-l3"></div>
+    <div class="hgeo-dots"></div>
+  </div>
+
+  <!-- Enhancement 1A: focal glow behind headline -->
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="contain">
+
+    <h1 class="hero-h1">Se alguém procurar a sua empresa hoje, o que encontra?</h1>
+
+    <p class="hero-sub">Criamos websites pensados para atrair novos clientes, reforçar a sua credibilidade e valorizar a sua empresa no mercado.</p>
+
+    <a href="#contacto" class="btn-hero">
+      Agendar demonstração <span class="arrow">&#8594;</span>
+    </a>
+
+    <div class="benefit-grid">
+
+      <div class="bcard">
+        <div class="bcard-step"><span>01</span></div>
+        <div class="bcard-metric">
+          <span class="bcard-num">3 em 1</span>
+          <span class="bcard-unit">benefícios</span>
+        </div>
+        <div class="bcard-title">Clientes, confiança e talento</div>
+        <div class="bcard-desc">Um website profissional atrai clientes, transmite confiança e torna a sua empresa mais atrativa para candidatos.</div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-step"><span>02</span></div>
+        <div class="bcard-metric">
+          <span class="bcard-num">72h</span>
+          <span class="bcard-unit">de entrega</span>
+        </div>
+        <div class="bcard-title">Entregue em 72 horas</div>
+        <div class="bcard-desc">Sem demoras. Recebe uma proposta visual do seu website em apenas 72 horas.</div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-step"><span>03</span></div>
+        <div class="bcard-metric">
+          <span class="bcard-num">100%</span>
+          <span class="bcard-unit">à medida</span>
+        </div>
+        <div class="bcard-title">Feito à medida da sua empresa</div>
+        <div class="bcard-desc">Nada de templates. Cada website é pensado e construído exclusivamente para o seu negócio.</div>
+      </div>
+
+      <div class="bcard">
+        <div class="bcard-step"><span>04</span></div>
+        <div class="bcard-metric">
+          <span class="bcard-num">0&#x20AC;</span>
+          <span class="bcard-unit">demonstração + plano</span>
+        </div>
+        <div class="bcard-title">Demonstração gratuita</div>
+        <div class="bcard-desc">Veja como ficaria o seu website sem qualquer compromisso ou custo inicial.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     PROBLEMA
+     ================================================================ -->
+<section id="problema" class="problema">
+  <div class="contain">
+
+    <div class="sec-id reveal">Problema</div>
+
+    <div class="prob-head reveal">
+      <h2>Se não controla o que aparece no Google sobre a sua empresa, está a perder oportunidades sem saber.</h2>
+      <p class="sub">Não tem de continuar a ser assim.</p>
+    </div>
+
+    <!-- Stats funnel — appears BEFORE the problem cards -->
+    <div class="stats-row">
+
+      <div class="stat-card reveal" data-delay="0">
+        <div class="stat-eyebrow">Internet</div>
+        <div class="stat-num">97%</div>
+        <p class="stat-desc">dos consumidores pesquisam serviços na Internet</p>
+      </div>
+
+      <div class="stat-arrow">
+        <div class="stat-arrow-line"></div>
+        <div class="stat-arrow-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke="rgba(255,255,255,0.22)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="stat-arrow-line"></div>
+        <span class="stat-arrow-label">desses</span>
+      </div>
+
+      <div class="stat-card reveal" data-delay="200">
+        <div class="stat-eyebrow">Contacto</div>
+        <div class="stat-num">76%</div>
+        <p class="stat-desc">desses entram em contacto com uma empresa nas primeiras 24 horas</p>
+      </div>
+
+    </div>
+
+    <div class="prob-grid">
+
+      <div class="pcard reveal" data-delay="0">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="2,5 7.5,12 12,7.5 18,14.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="13.5,14.5 18,14.5 18,10" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Dependência total de recomendações</h3>
+        <p>Ficar refém apenas do passa-palavra limita a sua previsibilidade e crescimento.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="100">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75"/>
+            <line x1="12.5" y1="12.5" x2="17.5" y2="17.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Novos clientes não encontram a sua empresa</h3>
+        <p>Quem precisa dos seus serviços hoje acaba por escolher o concorrente que aparece primeiro.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="200">
+        <div class="pcard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" stroke="rgba(255,255,255,0.5)" stroke-width="1.75"/>
+            <line x1="10" y1="6.5" x2="10" y2="11.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="10" cy="14" r="0.9" fill="rgba(255,255,255,0.5)"/>
+          </svg>
+        </div>
+        <h3>Imagem pouco profissional face à concorrência</h3>
+        <p>Um negócio sem site ou com site desatualizado perde credibilidade instantaneamente.</p>
+      </div>
+
+      <div class="pcard reveal" data-delay="300">
+        <div class="pcard-icon">
+          <svg width="20" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="5" r="3.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.7"/>
+            <circle cx="17" cy="5" r="2.8" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <path d="M1 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="rgba(255,255,255,0.5)" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+            <path d="M16 11.5c2.485 0 4.5 2.015 4.5 4.5" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <h3>Dificuldade em atrair bons profissionais</h3>
+        <p>Os melhores talentos pesquisam pela sua empresa antes de aceitarem trabalhar consigo.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     O QUE FAZEMOS + PROCESSO
+     ================================================================ -->
+<section id="servicos" class="fazemos">
+  <div class="contain">
+
+    <div class="sec-id reveal">O que fazemos</div>
+
+    <div class="fazemos-head reveal">
+      <h2>Criamos websites pensados para representar a sua empresa da forma certa.</h2>
+      <p class="sub">E transformar a sua presença online numa ferramenta de crescimento.</p>
+    </div>
+
+    <div class="svc-grid">
+
+      <!-- Hero card: spans 2 columns -->
+      <div class="scard scard-hero reveal" data-delay="0">
+        <div class="scard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8" stroke="#5EEAD4" stroke-width="1.6"/>
+            <circle cx="10" cy="10" r="4" stroke="#5EEAD4" stroke-width="1.6"/>
+            <circle cx="10" cy="10" r="1.3" fill="#5EEAD4"/>
+          </svg>
+        </div>
+        <h3>Estruturado para gerar contactos</h3>
+        <p>Cada página é pensada para guiar o visitante até ao contacto, sem distrações. A arquitetura de informação, o posicionamento dos botões e o fluxo de navegação são desenhados com um único objetivo: transformar visitas em pedidos de contacto.</p>
+      </div>
+
+      <div class="scard reveal" data-delay="100">
+        <div class="scard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2L3 5.5v5c0 3.5 2.8 6.8 7 7.8 4.2-1 7-4.3 7-7.8v-5L10 2z" stroke="#5EEAD4" stroke-width="1.6" stroke-linejoin="round"/>
+            <polyline points="7,10 9.2,12.5 13,7.5" stroke="#5EEAD4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Pensado para transmitir confiança imediata</h3>
+        <p>Design profissional que faz a sua empresa parecer tão boa quanto realmente é.</p>
+      </div>
+
+      <div class="scard reveal" data-delay="200">
+        <div class="scard-icon">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="4" y1="6"  x2="16" y2="6"  stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round"/>
+            <line x1="4" y1="10" x2="16" y2="10" stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round"/>
+            <line x1="4" y1="14" x2="11" y2="14" stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Clareza total nos serviços e proposta de valor</h3>
+        <p>Informação organizada para que o visitante perceba em segundos o que a sua empresa faz.</p>
+      </div>
+
+    </div>
+
+    <p class="proc-label">O nosso processo</p>
+    <div class="proc-wrap">
+      <div class="proc-track"></div>
+      <div class="proc-grid">
+
+        <div class="step-card reveal" data-delay="0">
+          <!-- Browser window mockup -->
+          <div class="step-visual">
+            <svg width="108" height="72" viewBox="0 0 108 72" fill="none">
+              <rect x="1" y="1" width="106" height="70" rx="7" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+              <line x1="1" y1="20" x2="107" y2="20" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <circle cx="11" cy="11" r="3" fill="rgba(255,80,80,0.28)"/>
+              <circle cx="22" cy="11" r="3" fill="rgba(255,185,0,0.28)"/>
+              <circle cx="33" cy="11" r="3" fill="rgba(60,200,60,0.28)"/>
+              <rect x="42" y="6" width="54" height="10" rx="3" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+              <rect x="9" y="28" width="90" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+              <rect x="9" y="38" width="56" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="9" y="48" width="72" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+              <rect x="9" y="58" width="36" height="7" rx="3" fill="rgba(94,234,212,0.1)" stroke="rgba(94,234,212,0.22)" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="step-ind"><span class="step-dot"></span><span class="step-n">01</span></div>
+          <h3>Demonstração do website</h3>
+          <p>Mostramos-lhe como ficaria o seu website, sem compromisso.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="100">
+          <!-- Customisation: overlapping frames + slider controls -->
+          <div class="step-visual">
+            <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+              <rect x="4" y="4" width="54" height="40" rx="5" stroke="rgba(94,234,212,0.2)" stroke-width="1.5" fill="none"/>
+              <rect x="22" y="16" width="54" height="40" rx="5" stroke="rgba(94,234,212,0.09)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+              <line x1="6" y1="58" x2="60" y2="58" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="38" cy="58" r="4.5" fill="rgba(94,234,212,0.18)" stroke="rgba(94,234,212,0.45)" stroke-width="1.2"/>
+              <line x1="6" y1="68" x2="60" y2="68" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="22" cy="68" r="4.5" fill="rgba(94,234,212,0.1)" stroke="rgba(94,234,212,0.3)" stroke-width="1.2"/>
+            </svg>
+          </div>
+          <div class="step-ind"><span class="step-dot"></span><span class="step-n">02</span></div>
+          <h3>Personalização à medida</h3>
+          <p>Ajustamos tudo ao seu negócio: cores, conteúdo, estrutura.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="200">
+          <!-- Checkmark circle + publish arrow -->
+          <div class="step-visual">
+            <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+              <circle cx="38" cy="36" r="28" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+              <circle cx="38" cy="36" r="19" stroke="rgba(94,234,212,0.18)" stroke-width="1.5"/>
+              <polyline points="26,36 33,44 50,28" stroke="rgba(94,234,212,0.5)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="78" y1="62" x2="78" y2="24" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-linecap="round"/>
+              <polyline points="70,32 78,24 86,32" stroke="rgba(255,255,255,0.13)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="71" y1="68" x2="85" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="step-ind"><span class="step-dot"></span><span class="step-n">03</span></div>
+          <h3>Revisão e publicação</h3>
+          <p>Revemos consigo e publicamos quando estiver perfeito.</p>
+        </div>
+
+        <div class="step-card reveal" data-delay="300">
+          <!-- Trending chart with pulse line -->
+          <div class="step-visual">
+            <svg width="110" height="68" viewBox="0 0 110 68" fill="none">
+              <line x1="8" y1="56" x2="102" y2="56" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="40" x2="102" y2="40" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="24" x2="102" y2="24" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="8"  x2="102" y2="8"  stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <line x1="8" y1="8"  x2="8"   y2="56" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+              <polygon points="8,54 24,46 42,36 60,24 78,14 102,6 102,56 8,56" fill="rgba(94,234,212,0.03)"/>
+              <polyline points="8,54 24,46 42,36 60,24 78,14 102,6" stroke="rgba(94,234,212,0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="8,56 18,56 24,44 30,52 36,52 44,34 50,52 56,52 64,56 88,56" stroke="rgba(255,255,255,0.1)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="step-ind"><span class="step-dot"></span><span class="step-n">04</span></div>
+          <h3>Acompanhamento</h3>
+          <p>Não desaparecemos. Ficamos consigo para otimizar resultados.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================================================================
+     EQUIPA
+     ================================================================ -->
+<section id="equipa" class="equipa">
+  <div class="contain">
+
+    <div class="sec-id reveal">Equipa</div>
+
+    <div class="equipa-head reveal">
+      <h2>Uma equipa focada em resultados reais.</h2>
+    </div>
+
+    <div class="team-grid">
+
+      <div class="tcard reveal" data-delay="0">
+        <div class="tcard-top">
+          <span class="tcard-ctr">01 / 03</span>
+          <span class="tcard-live"><span class="live-dot"></span>LIVE</span>
+        </div>
+        <div class="tcard-photo">
+          <img src="uploads/antonio.jpg" alt="António Tomás, CEO" style="object-position:50% 15%; transform:scale(1.28); transform-origin:50% 18%;">
+        </div>
+        <div class="tcard-info">
+          <div class="tcard-role">CEO</div>
+          <div class="tcard-name">António Tomás</div>
+        </div>
+      </div>
+
+      <div class="tcard reveal" data-delay="120">
+        <div class="tcard-top">
+          <span class="tcard-ctr">02 / 03</span>
+          <span class="tcard-live"><span class="live-dot"></span>LIVE</span>
+        </div>
+        <div class="tcard-photo">
+          <img src="uploads/bernardo.jpg" alt="Bernardo Martins, Web Developer" style="object-position:50% 22%; transform:scale(0.92); transform-origin:50% 20%;">
+        </div>
+        <div class="tcard-info">
+          <div class="tcard-role">Web Developer</div>
+          <div class="tcard-name">Bernardo Martins</div>
+        </div>
+      </div>
+
+      <div class="tcard reveal" data-delay="240">
+        <div class="tcard-top">
+          <span class="tcard-ctr">03 / 03</span>
+          <span class="tcard-live"><span class="live-dot"></span>LIVE</span>
+        </div>
+        <div class="tcard-photo">
+          <img src="uploads/rafael.jpg" alt="Rafael Oliveira, Web Developer" style="object-position:50% 12%;">
+        </div>
+        <div class="tcard-info">
+          <div class="tcard-role">Web Developer</div>
+          <div class="tcard-name">Rafael Oliveira</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     CTA
+     ================================================================ -->
+<section class="cta-sec">
+  <div class="contain">
+    <div class="cta-card reveal">
+      <div class="cta-glow-l"></div>
+      <div class="cta-glow-r"></div>
+      <div class="cta-inner">
+        <h2>Conheça o impacto de um website feito para a sua empresa</h2>
+        <p>10 minutos para perceber o potencial da sua presença online.</p>
+        <a href="#contacto" class="btn-hero">Agendar demonstração <span class="arrow">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FORMULÁRIO
+     ================================================================ -->
+<section id="contacto" class="form-sec">
+  <div class="contain">
+
+    <div class="sec-id ctr reveal">Contacto</div>
+
+    <div class="form-head reveal">
+      <h2>Agende a sua demonstração gratuita</h2>
+      <p>Preencha o formulário e entraremos em contacto consigo em menos de 24 horas.</p>
+    </div>
+
+    <div class="form-layout">
+
+      <!-- Trust indicators (left column) -->
+      <div class="form-trust reveal">
+        <h3 class="trust-headline">Porquê agendar?</h3>
+        <div class="trust-items">
+
+          <div class="trust-item">
+            <div class="trust-check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <polyline points="2,6 5,9 10,3" stroke="#5EEAD4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Sem qualquer compromisso</span>
+              <span class="trust-desc">A demonstração é 100% gratuita. Sem contratos, sem pressão.</span>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <polyline points="2,6 5,9 10,3" stroke="#5EEAD4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Resposta em menos de 24h</span>
+              <span class="trust-desc">A nossa equipa entra em contacto consigo rapidamente.</span>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-check">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <polyline points="2,6 5,9 10,3" stroke="#5EEAD4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="trust-text">
+              <span class="trust-title">Veja o resultado antes de decidir</span>
+              <span class="trust-desc">Mostramos-lhe como ficaria o seu website antes de avançar.</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="trust-secure">
+          <svg width="13" height="13" viewBox="0 0 12 12" fill="none">
+            <rect x="2" y="5.5" width="8" height="6" rx="1.5" stroke="#6B7280" stroke-width="1.4"/>
+            <path d="M4 5.5V4a2 2 0 0 1 4 0v1.5" stroke="#6B7280" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          Os seus dados estão seguros e não serão partilhados.
+        </div>
+      </div>
+
+      <!-- Form card (right column) -->
+      <div class="form-card reveal">
+
+        <!-- Success state (hidden until form is submitted) -->
+        <div class="form-success" aria-hidden="true">
+          <div class="success-check">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="26" fill="rgba(94,234,212,0.06)" stroke="rgba(94,234,212,0.22)" stroke-width="1.5"/>
+              <polyline points="16,28 24,36 40,20" stroke="#5EEAD4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="success-title">Pedido enviado com sucesso!</div>
+          <div class="success-sub">Entraremos em contacto consigo em breve.</div>
+        </div>
+
+        <form class="the-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="f-nome">Nome<span class="req">*</span></label>
+              <input class="form-input" id="f-nome" type="text" placeholder="O seu nome" required>
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-email">Email<span class="req">*</span></label>
+              <input class="form-input" id="f-email" type="email" placeholder="email@empresa.pt" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label class="form-label" for="f-tel">Telefone</label>
+              <input class="form-input" id="f-tel" type="tel" placeholder="+351 900 000 000">
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="f-emp">Nome da empresa<span class="req">*</span></label>
+              <input class="form-input" id="f-emp" type="text" placeholder="Nome da empresa" required>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="f-msg">Mensagem</label>
+            <textarea class="form-input form-textarea" id="f-msg" rows="4" placeholder="Conte-nos mais sobre o seu negócio..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Enviar pedido</button>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FAQ
+     ================================================================ -->
+<section id="faq" class="faq-sec">
+  <div class="contain">
+
+    <div class="faq-head reveal">
+      <div class="sec-id ctr">FAQ</div>
+      <h2>Perguntas frequentes</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item reveal" data-delay="0">
+        <button class="faq-btn" onclick="toggleFaq(0)">
+          <span class="faq-q">Quanto tempo demora?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>O prazo varia consoante a disponibilidade do cliente, mas a média de entrega dos nossos projetos tem sido de 5 dias úteis.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="60">
+        <button class="faq-btn" onclick="toggleFaq(1)">
+          <span class="faq-q">E como faço para o domínio?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Ajudamos em todo o processo. Se já tiver domínio, só precisamos das suas credenciais para alojar o website. Se ainda não tiver domínio, podemos tratá-lo consigo e mantê-lo ativo, mediante um pagamento anual variável conforme o preço do domínio, normalmente entre &euro;30 e &euro;50.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="120">
+        <button class="faq-btn" onclick="toggleFaq(2)">
+          <span class="faq-q">Isto ajuda mesmo a atrair clientes?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Sim. O objetivo é tornar o seu negócio mais fácil de encontrar no Google e apresentar informação clara, para que um potencial cliente avance com mais confiança para o contacto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="180">
+        <button class="faq-btn" onclick="toggleFaq(3)">
+          <span class="faq-q">E na contratação de funcionários?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Sim, uma presença profissional no Google transmite mais credibilidade e pode facilitar a atração de candidatos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="240">
+        <button class="faq-btn" onclick="toggleFaq(4)">
+          <span class="faq-q">O website funciona no telemóvel?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Sim. Todos os websites são desenvolvidos para funcionar corretamente em computador, tablet e smartphone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="300">
+        <button class="faq-btn" onclick="toggleFaq(5)">
+          <span class="faq-q">E se precisar de ajuda depois da entrega?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Continuamos disponíveis para prestar suporte e realizar pequenas alterações sempre que necessário. Se pretender atualizações regulares, melhorias contínuas ou acompanhamento permanente, recomendamos a subscrição do nosso Pack de Manutenção.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="360">
+        <button class="faq-btn" onclick="toggleFaq(6)">
+          <span class="faq-q">O website é meu?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Sim. O website pertence-lhe. Após a entrega, terá acesso ao domínio, alojamento e a todos os ficheiros do projeto.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" data-delay="420">
+        <button class="faq-btn" onclick="toggleFaq(7)">
+          <span class="faq-q">Tenho de assinar algum contrato?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner">
+            <p>Não. O processo é simples e transparente. Definimos o projeto, o prazo e o valor antes de iniciar os trabalhos.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#top" class="footer-brand">
+      <img src="uploads/pasted-1782258618052-0.png" alt="WebVentures" class="nav-logo footer-logo">
+      <span class="footer-wordmark">WEBVENTURES</span>
+    </a>
+    <nav class="footer-nav">
+      <a href="#top"      class="footer-link">Home</a>
+      <a href="precos.html" class="footer-link">Preço</a>
+      <a href="portfolio.html" class="footer-link">Portfolio</a>
+      <a href="#contacto" class="footer-link">Contactos</a>
+    </nav>
+    <a href="#contacto" class="btn-footer">Agendar demonstração</a>
+  </div>
+  <div class="footer-copy">
+    <div class="footer-copy-inner">© 2026 WebVentures. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+
+</div><!-- /wrap -->
+
+<script src="script.js"></script>
+</body>
+</html>

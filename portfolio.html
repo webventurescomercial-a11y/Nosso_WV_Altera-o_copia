@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio – WebVentures</title>
+<meta name="description" content="Conheça alguns dos websites que a WebVentures já colocou online, incluindo projetos na área de instalações elétricas.">
+<link rel="icon" type="image/png" href="uploads/image-clean.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Aurora ambient light -->
+<div class="aurora">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-tex"></div>
+
+<div class="wrap">
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html#top" class="nav-brand">
+      <img src="uploads/LOGOO_WV.png" alt="WebVentures" class="nav-logo">
+      <span class="footer-wordmark">WEBVENTURES</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#top"      class="nav-link">Home</a>
+      <a href="precos.html"         class="nav-link">Preço</a>
+      <a href="portfolio.html"      class="nav-link">Portfolio</a>
+      <a href="index.html#contacto" class="nav-link">Contactos</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+      <span class="h-line"></span>
+    </button>
+    <a href="index.html#contacto" class="btn-white">Agendar demonstração</a>
+  </div>
+</header>
+
+<!-- Mobile navigation overlay -->
+<div class="mobile-overlay" id="mobileOverlay" aria-hidden="true">
+  <nav class="mobile-nav">
+    <a href="index.html#top"      class="mobile-link">Home</a>
+    <a href="precos.html"         class="mobile-link">Preço</a>
+    <a href="portfolio.html"      class="mobile-link">Portfolio</a>
+    <a href="index.html#contacto" class="mobile-link">Contactos</a>
+  </nav>
+  <a href="index.html#contacto" class="btn-hero mobile-cta">Agendar demonstração <span class="arrow">&#8594;</span></a>
+</div>
+
+
+<!-- ================================================================
+     PORTFOLIO
+     ================================================================ -->
+<section class="portfolio-sec">
+  <div class="contain">
+
+    <div class="sec-id ctr reveal">Portfolio</div>
+
+    <div class="port-head reveal">
+      <h2>Alguns dos websites que já colocámos no ar</h2>
+      <p class="sub">Projetos reais, para negócios reais. Explore por categoria ou veja tudo.</p>
+    </div>
+
+    <div class="port-filters reveal">
+      <button class="port-filter-btn active" data-filter="all">Todos</button>
+      <button class="port-filter-btn" data-filter="eletricas">Instalações Elétricas</button>
+    </div>
+
+    <div class="port-grid">
+
+      <a class="port-card reveal" data-delay="0" data-category="eletricas"
+         href="https://labirintamper.pt/" target="_blank" rel="noopener noreferrer">
+        <div class="port-logo-frame">
+          <div class="port-logo-plate">
+            <img src="uploads/Labirintamper.png" alt="Labirintamper">
+          </div>
+        </div>
+        <div class="port-info">
+          <div>
+            <div class="port-name">Labirintamper</div>
+            <div class="port-domain">labirintamper.pt</div>
+          </div>
+          <span class="port-visit">Ver site <span class="arrow">&#8594;</span></span>
+        </div>
+      </a>
+
+      <a class="port-card reveal" data-delay="100" data-category="eletricas"
+         href="https://energiaactiva.pt/" target="_blank" rel="noopener noreferrer">
+        <div class="port-logo-frame">
+          <div class="port-logo-plate">
+            <img src="uploads/Energia_Activa.png" alt="Energia Activa">
+          </div>
+        </div>
+        <div class="port-info">
+          <div>
+            <div class="port-name">Energia Activa</div>
+            <div class="port-domain">energiaactiva.pt</div>
+          </div>
+          <span class="port-visit">Ver site <span class="arrow">&#8594;</span></span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     CTA
+     ================================================================ -->
+<section class="cta-sec">
+  <div class="contain">
+    <div class="cta-card reveal">
+      <div class="cta-glow-l"></div>
+      <div class="cta-glow-r"></div>
+      <div class="cta-inner">
+        <h2>Torne a sua empresa no próximo caso de sucesso</h2>
+        <p>Veja como ficaria um website feito à medida do seu negócio.</p>
+        <a href="index.html#contacto" class="btn-hero">Agendar demonstração <span class="arrow">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="index.html#top" class="footer-brand">
+      <img src="uploads/LOGOO_WV.png" alt="WebVentures" class="nav-logo footer-logo">
+      <span class="footer-wordmark">WEBVENTURES</span>
+    </a>
+    <nav class="footer-nav">
+      <a href="index.html#top"      class="footer-link">Home</a>
+      <a href="precos.html"         class="footer-link">Preço</a>
+      <a href="portfolio.html"      class="footer-link">Portfolio</a>
+      <a href="index.html#contacto" class="footer-link">Contactos</a>
+    </nav>
+    <a href="index.html#contacto" class="btn-footer">Agendar demonstração</a>
+  </div>
+  <div class="footer-copy">
+    <div class="footer-copy-inner">© 2026 WebVentures. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+
+</div><!-- /wrap -->
+
+<script src="script.js"></script>
+</body>
+</html>
