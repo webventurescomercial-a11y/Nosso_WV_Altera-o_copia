@@ -89,7 +89,7 @@ header {
   display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
 .nav-logo {
-  height:36px; width:auto; flex:none;
+  height:52px; width:auto; flex:none;
 }
 .nav-brand { display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }
 .nav-links {
@@ -991,7 +991,7 @@ header {
    ENHANCEMENT 8: LOGO
    ============================================================ */
 
-.footer-logo { height:42px; }
+.footer-logo { height:64px; }
 
 /* ============================================================
    ENHANCEMENT 9: PRICING SECTION
