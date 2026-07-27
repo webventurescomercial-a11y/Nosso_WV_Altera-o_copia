@@ -126,14 +126,22 @@ a { text-decoration:none; color:inherit; }
 /* ============================================================
    NAVIGATION
    ============================================================ */
+/* Fully transparent over the hero; the blurred panel only comes back
+   on scroll, which is what keeps the links readable once light
+   sections (e.g. the testimonial card) slide underneath. */
 header {
   position:sticky; top:0; z-index:100;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .35s ease, backdrop-filter .35s ease,
+             border-color .35s ease, box-shadow .35s ease;
+}
+header.scrolled {
   background:rgba(8,8,8,0.80);
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:box-shadow .35s ease;
+  border-bottom-color:var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
 }
-header.scrolled { box-shadow:0 10px 30px rgba(0,0,0,0.35); }
 .nav-inner {
   max-width:var(--maxw); margin:0 auto;
   padding:16px 32px;
@@ -141,13 +149,16 @@ header.scrolled { box-shadow:0 10px 30px rgba(0,0,0,0.35); }
   transition:padding .35s cubic-bezier(.2,.7,.2,1);
 }
 header.scrolled .nav-inner { padding-top:9px; padding-bottom:9px; }
+/* logo art is a transparent cut-out trimmed to the mark itself, so this
+   height is the height of the W, not of a padded box */
 .nav-logo {
-  height:52px; width:auto; flex:none;
+  height:38px; width:auto; flex:none;
 }
-.nav-brand { display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }
+.nav-brand { display:flex; flex-direction:column; align-items:center; gap:6px; flex:none; }
 .nav-links {
   display:flex; align-items:center; gap:34px;
-  font-size:14.5px; font-weight:500; color:var(--muted);
+  font-size:14.5px; font-weight:500;
+  color:rgba(255,255,255,0.88);
 }
 .nav-link { position:relative; transition:color .2s; }
 .nav-link:hover { color:var(--white); }
@@ -1045,7 +1056,7 @@ header.scrolled .nav-inner { padding-top:9px; padding-bottom:9px; }
    ENHANCEMENT 8: LOGO
    ============================================================ */
 
-.footer-logo { height:64px; }
+.footer-logo { height:46px; }
 
 /* ============================================================
    ENHANCEMENT 9: PRICING SECTION

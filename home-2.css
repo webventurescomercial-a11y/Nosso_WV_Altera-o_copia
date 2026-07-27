@@ -64,12 +64,19 @@
    ============================================================ */
 .h2-hero { padding:100px 0 96px; position:relative; }
 /* Glow radial atras do conteudo da hero — nao afeta o layout */
+/* No solid background-color: the aurora layer has to stay visible through
+   the now-transparent header. The layer also reaches up behind the header
+   and fades out with a mask — clipping it at the hero's top edge drew a
+   hard line right under the nav. The mask is a ramp, so it stays seamless
+   whatever height the header happens to be. */
 .h2-hero::before {
-  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-  background-color:var(--h2-bg);
+  content:""; position:absolute; left:0; right:0; bottom:0; top:-96px;
+  z-index:0; pointer-events:none;
   background-image:
-    radial-gradient(circle at 75% 45%, rgba(94,234,212,0.7) 0%, transparent 15%),
-    radial-gradient(circle at 75% 45%, rgba(94,234,212,0.4) 0%, transparent 40%);
+    radial-gradient(circle at 75% 52%, rgba(94,234,212,0.7) 0%, transparent 15%),
+    radial-gradient(circle at 75% 52%, rgba(94,234,212,0.4) 0%, transparent 40%);
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 96px);
+  mask-image:linear-gradient(to bottom, transparent 0, #000 96px);
 }
 .h2-hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; position:relative; z-index:1; }
 .h2-hero-copy h1 {
