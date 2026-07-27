@@ -40,6 +40,12 @@ a { text-decoration:none; color:inherit; }
 .orb {
   position:absolute; border-radius:50%;
   filter:blur(120px); pointer-events:none;
+  animation:orb-drift 16s ease-in-out infinite;
+  will-change:transform;
+}
+@keyframes orb-drift {
+  0%,100% { transform:translate3d(0,0,0) scale(1); }
+  50%     { transform:translate3d(44px,-32px,0) scale(1.05); }
 }
 .orb-1 {
   width:680px; height:680px;
@@ -50,11 +56,54 @@ a { text-decoration:none; color:inherit; }
   width:560px; height:560px;
   top:360px; right:-200px;
   background:radial-gradient(circle, rgba(45,212,191,0.065) 0%, transparent 68%);
+  animation-duration:20s; animation-delay:-7s;
 }
 .orb-3 {
   width:820px; height:820px;
   bottom:-300px; left:22%;
   background:radial-gradient(circle, rgba(17,70,64,0.22) 0%, transparent 68%);
+  animation-duration:24s; animation-delay:-13s;
+}
+
+/* Cursor-following ambient spotlight (injected by script.js on
+   fine-pointer devices only; fades in on first mouse move) */
+.cursor-glow {
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(560px circle at var(--mx,50vw) var(--my,30vh),
+    rgba(94,234,212,0.075), transparent 70%);
+  opacity:0; transition:opacity .8s ease;
+}
+.cursor-glow.on { opacity:1; }
+
+/* Custom animated cursor — teal dot + trailing ring (script.js).
+   The .cursor-fx class is only added on fine-pointer devices,
+   so touch users keep the native cursor untouched. */
+.cursor-fx, .cursor-fx * { cursor:none !important; }
+.cursor-fx input, .cursor-fx textarea, .cursor-fx select { cursor:auto !important; }
+.cursor-dot, .cursor-ring {
+  position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
+  border-radius:50%;
+  opacity:0; transition:opacity .25s ease;
+}
+.cursor-dot.on, .cursor-ring.on { opacity:1; }
+.cursor-dot {
+  width:7px; height:7px; margin:-3.5px 0 0 -3.5px;
+  background:var(--accent);
+  box-shadow:0 0 12px rgba(94,234,212,0.65);
+}
+.cursor-ring {
+  width:34px; height:34px; margin:-17px 0 0 -17px;
+  border:1px solid rgba(94,234,212,0.45);
+  transition:opacity .25s ease, border-color .25s ease, background .25s ease;
+}
+.cursor-ring.is-hover {
+  border-color:rgba(94,234,212,0.85);
+  background:rgba(94,234,212,0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation:none; }
+  .cursor-glow, .cursor-dot, .cursor-ring { display:none; }
 }
 
 /* Subtle grid overlay */
@@ -82,12 +131,16 @@ header {
   background:rgba(8,8,8,0.80);
   backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
+  transition:box-shadow .35s ease;
 }
+header.scrolled { box-shadow:0 10px 30px rgba(0,0,0,0.35); }
 .nav-inner {
   max-width:var(--maxw); margin:0 auto;
   padding:16px 32px;
   display:flex; align-items:center; justify-content:space-between; gap:24px;
+  transition:padding .35s cubic-bezier(.2,.7,.2,1);
 }
+header.scrolled .nav-inner { padding-top:9px; padding-bottom:9px; }
 .nav-logo {
   height:52px; width:auto; flex:none;
 }
@@ -730,19 +783,20 @@ header {
 .reveal {
   opacity:0;
   transform:translateY(24px);
+  filter:blur(6px);
 }
 
 /* Triggered by IntersectionObserver — animation avoids overriding
    existing card hover transitions (border-color, background, etc.) */
 @keyframes scroll-reveal {
-  to { opacity:1; transform:translateY(0); }
+  to { opacity:1; transform:translateY(0); filter:blur(0); }
 }
 .revealed {
-  animation:scroll-reveal 0.6s ease forwards;
+  animation:scroll-reveal 0.65s cubic-bezier(.2,.7,.2,1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity:1; transform:none; }
+  .reveal { opacity:1; transform:none; filter:none; }
   .revealed { animation:none; }
 }
 

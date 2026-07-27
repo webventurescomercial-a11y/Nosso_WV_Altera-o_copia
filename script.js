@@ -144,7 +144,12 @@
         var progress = Math.min((ts - start) / duration, 1);
         var eased = 1 - Math.pow(1 - progress, 3); /* ease-out cubic */
         el.textContent = Math.round(eased * target);
-        if (progress < 1) requestAnimationFrame(step);
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else if (el.parentElement) {
+          /* micro-flash punch when the number lands on its final value */
+          el.parentElement.classList.add('h2-stat-pop');
+        }
       }
       requestAnimationFrame(step);
     }
@@ -216,6 +221,117 @@
       });
     }, { threshold: 0.1 });
     procObserver.observe(procWrap);
+  }());
+
+  /* ─── Home 2: process timeline — line draws, numbers light up ───── */
+  (function () {
+    var grid = document.querySelector('.h2-process-grid');
+    if (!grid) return;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var steps = grid.querySelectorAll('.h2-step-n');
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      /* leave the line as-is and light the numbers without animating */
+      steps.forEach(function (n) { n.classList.add('lit'); });
+      return;
+    }
+
+    grid.classList.add('h2-anim'); /* only hide the line when we can draw it */
+
+    var procObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        grid.classList.add('drawn');
+        [400, 800, 1200].forEach(function (delay, i) {
+          if (steps[i]) setTimeout(function () { steps[i].classList.add('lit'); }, delay);
+        });
+        procObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    procObserver.observe(grid);
+  }());
+
+  /* ─── Header: subtle shrink once the page starts scrolling ──────── */
+  (function () {
+    var header = document.querySelector('header');
+    if (!header) return;
+    var ticking = false;
+    function update() {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }());
+
+  /* ─── Animated cursor: teal dot + trailing ring + ambient glow ──── */
+  (function () {
+    if (!window.matchMedia) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    document.documentElement.classList.add('cursor-fx');
+
+    function make(cls) {
+      var el = document.createElement('div');
+      el.className = cls;
+      el.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(el);
+      return el;
+    }
+    var glow = make('cursor-glow');
+    var dot  = make('cursor-dot');
+    var ring = make('cursor-ring');
+
+    var mx = window.innerWidth / 2,  my = window.innerHeight / 2; /* mouse */
+    var rx = mx, ry = my;                                         /* ring (trails) */
+    var gx = mx, gy = my;                                         /* glow (drifts) */
+    var scale = 1, targetScale = 1, pressed = false;
+    var active = false, raf = null;
+
+    function loop() {
+      /* lerp: ring chases the mouse, glow drifts even slower */
+      rx += (mx - rx) * 0.16;  ry += (my - ry) * 0.16;
+      gx += (mx - gx) * 0.09;  gy += (my - gy) * 0.09;
+      scale += ((pressed ? targetScale * 0.8 : targetScale) - scale) * 0.2;
+
+      dot.style.transform  = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+      ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0) scale(' + scale.toFixed(3) + ')';
+      glow.style.setProperty('--mx', gx.toFixed(1) + 'px');
+      glow.style.setProperty('--my', gy.toFixed(1) + 'px');
+      raf = requestAnimationFrame(loop);
+    }
+
+    function show() {
+      if (active) return;
+      active = true;
+      glow.classList.add('on'); dot.classList.add('on'); ring.classList.add('on');
+      if (!raf) raf = requestAnimationFrame(loop);
+    }
+    function hide() {
+      active = false;
+      glow.classList.remove('on'); dot.classList.remove('on'); ring.classList.remove('on');
+    }
+
+    window.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      /* native caret zones: step aside inside text fields */
+      if (e.target.closest && e.target.closest('input, textarea, select')) {
+        if (active) hide();
+        return;
+      }
+      show();
+      var interactive = e.target.closest &&
+        e.target.closest('a, button, [role="button"], label, .faq-btn');
+      targetScale = interactive ? 1.6 : 1;
+      ring.classList.toggle('is-hover', !!interactive);
+    }, { passive: true });
+
+    window.addEventListener('mousedown', function () { pressed = true;  }, { passive: true });
+    window.addEventListener('mouseup',   function () { pressed = false; }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', hide);
   }());
 
   /* ─── Pricing carousel arrows ────────────────────────────────────── */
