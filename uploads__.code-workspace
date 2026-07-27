@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "uploads"
+		},
+		{
+			"name": "webventures-landing",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "webventures-landing"
+	}
+}

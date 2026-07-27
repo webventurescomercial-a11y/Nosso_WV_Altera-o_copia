@@ -1051,6 +1051,7 @@ header {
   margin:24px 0 28px; padding-bottom:24px; border-bottom:1px solid var(--border);
 }
 .price-num  { font-size:44px; font-weight:800; letter-spacing:-0.03em; color:var(--white); line-height:1; }
+.price-old  { font-size:22px; font-weight:600; color:var(--dim); text-decoration:line-through; text-decoration-color:var(--muted); }
 .price-note { font-size:12.5px; color:var(--dim); font-weight:500; }
 .price-includes-note { font-size:13.5px; font-weight:600; color:var(--accent); margin-bottom:14px; }
 .price-list { display:flex; flex-direction:column; gap:13px; margin-bottom:32px; flex:1; }
