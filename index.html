@@ -492,19 +492,24 @@
 
         <form class="the-form" novalidate>
 
+          <input type="hidden" name="access_key" value="c5ce7f09-babb-4852-8e91-626fc2a6971e">
+          <input type="hidden" name="subject" value="Novo contacto — WebVentures">
+          <input type="hidden" name="from_name" value="WebVentures Website">
+          <input type="checkbox" name="botcheck" style="display:none">
+
           <div class="form-field">
             <label class="form-label" for="h2-nome">Nome<span class="req">*</span></label>
-            <input class="form-input" id="h2-nome" type="text" placeholder="O seu nome" required>
+            <input class="form-input" id="h2-nome" name="name" type="text" placeholder="O seu nome" required>
           </div>
 
           <div class="form-field">
             <label class="form-label" for="h2-email">Email<span class="req">*</span></label>
-            <input class="form-input" id="h2-email" type="email" placeholder="email@empresa.pt" required>
+            <input class="form-input" id="h2-email" name="email" type="email" placeholder="email@empresa.pt" required>
           </div>
 
           <div class="form-field">
             <label class="form-label" for="h2-msg">Mensagem</label>
-            <textarea class="form-input form-textarea" id="h2-msg" rows="4" placeholder="Conte-nos mais sobre o seu negócio..."></textarea>
+            <textarea class="form-input form-textarea" id="h2-msg" name="message" rows="4" placeholder="Conte-nos mais sobre o seu negócio..."></textarea>
           </div>
 
           <button type="submit" class="btn-submit">Enviar mensagem</button>

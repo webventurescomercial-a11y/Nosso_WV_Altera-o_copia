@@ -1,4 +1,4 @@
-  /* ─── FAQ accordion ─────────────────────────────────────────────── */
+/* ─── FAQ accordion ─────────────────────────────────────────────── */
   var openFaq = -1;
   function toggleFaq(i) {
     var items = document.querySelectorAll('.faq-item');
@@ -13,25 +13,64 @@
     });
   }
 
-  /* ─── Form submit feedback ──────────────────────────────────────── */
+  /* ─── Form submit → Web3Forms ───────────────────────────────────── */
   var form = document.querySelector('.the-form');
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      var card    = form.closest('.form-card');
-      var success = card && card.querySelector('.form-success');
-      if (success) {
-        form.style.display = 'none';
-        success.classList.add('visible');
-        success.removeAttribute('aria-hidden');
-      } else {
-        var btn = form.querySelector('.btn-submit');
-        btn.textContent = 'Pedido enviado!';
-        btn.style.background = 'rgba(94,234,212,0.15)';
-        btn.style.color = '#5EEAD4';
-        btn.style.border = '1px solid rgba(94,234,212,0.3)';
-        btn.disabled = true;
-      }
+
+      var btn = form.querySelector('.btn-submit');
+      var originalText = btn.textContent;
+      btn.textContent = 'A enviar...';
+      btn.disabled = true;
+
+      var formData = new FormData(form);
+      var object = Object.fromEntries(formData);
+      var json = JSON.stringify(object);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then(function(response) { return response.json(); })
+      .then(function(data) {
+        if (data.success) {
+          var card    = form.closest('.form-card');
+          var success = card && card.querySelector('.form-success');
+          if (success) {
+            form.style.display = 'none';
+            success.classList.add('visible');
+            success.removeAttribute('aria-hidden');
+          } else {
+            btn.textContent = 'Pedido enviado!';
+            btn.style.background = 'rgba(94,234,212,0.15)';
+            btn.style.color = '#5EEAD4';
+            btn.style.border = '1px solid rgba(94,234,212,0.3)';
+          }
+          form.reset();
+        } else {
+          btn.textContent = 'Erro — tente novamente';
+          btn.style.background = 'rgba(239,68,68,0.15)';
+          btn.style.color = '#f87171';
+          btn.disabled = false;
+          setTimeout(function() {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.style.color = '';
+          }, 3000);
+        }
+      })
+      .catch(function() {
+        btn.textContent = 'Erro de conexão';
+        btn.disabled = false;
+        setTimeout(function() {
+          btn.textContent = originalText;
+        }, 3000);
+      });
     });
   }
 
