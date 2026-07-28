@@ -1170,7 +1170,7 @@ header.scrolled .nav-inner { padding-top:9px; padding-bottom:9px; }
 }
 
 .port-grid {
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 340px));
+  display:grid; grid-template-columns:1fr 1fr;
   justify-content:center; gap:24px;
 }
 .port-card {
